@@ -1,14 +1,7 @@
 package ancientnumbers.eddytom.com.ancientnumbers;
 
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.constraint.solver.widgets.Rectangle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,16 +10,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Space;
 import android.widget.TableLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TableLayout output;
+    TableLayout output_mayan;
+    TextView output_roman;
+    Space m1space;
+    Space m2space;
     Button convert;
     private ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219,r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319,r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
     ArrayList<ImageView> nodeList;
+    Drawable d;
+    Drawable dd;
+    EditText input;
     int counter = 0;
 
     @Override
@@ -37,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Creating instances of all components.
-        final EditText input = findViewById(R.id.input);
+        input = findViewById(R.id.input);
+        d = getResources().getDrawable(R.drawable.mayan_circle);
+        dd = getResources().getDrawable(R.drawable.mayan_bar);
         convert = findViewById(R.id.convert);
-        output = findViewById(R.id.output);
+        output_mayan = findViewById(R.id.output_mayan);
+        m1space = findViewById(R.id.space_one_mayan);
+        m2space = findViewById(R.id.space_two_mayan);
+        output_roman = findViewById(R.id.output_roman);
         r11 = findViewById(R.id.r11);
         r12 = findViewById(R.id.r12);
         r13 = findViewById(R.id.r13);
@@ -171,11 +178,18 @@ public class MainActivity extends AppCompatActivity {
         nodeList.add(r419);
 
 
+
         convert.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
-                int num = Integer.parseInt(input.getText().toString());
+                int num = 999999999;
+                if(!input.getText().toString().isEmpty()) {
+                    num = Integer.parseInt(input.getText().toString());
+                }
+                if(num < 160000){
+                for(int i = 0; i < nodeList.size();i++){
+                    nodeList.get(i).setVisibility(View.INVISIBLE);
+                }
                 if (num >= 8000) {
                     num = tier4(num);
                 }
@@ -188,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
                 if (num >= 0) {
                     tier1(num);
                 }
+            }else{
+                    Toast.makeText(MainActivity.this, "Please enter a number within 1-159999.", Toast.LENGTH_LONG).show();
+            }
             }
         });
     }
@@ -207,14 +224,24 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_settings_mayan) {
+            Toast.makeText(MainActivity.this, "Switching to Mayan Converter", Toast.LENGTH_LONG).show();
+            output_mayan.setVisibility(View.VISIBLE);
+            m1space.setVisibility(View.VISIBLE);
+            m2space.setVisibility(View.VISIBLE);
+            output_roman.setVisibility(View.GONE);
+        }
+        if (id == R.id.action_settings_roman) {
+            Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
+            output_roman.setVisibility(View.VISIBLE);
+            output_mayan.setVisibility(View.GONE);
+            m1space.setVisibility(View.GONE);
+            m2space.setVisibility(View.GONE);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void tier1(int num) {
         boolean done = false;
         counter = 0;
@@ -229,10 +256,6 @@ public class MainActivity extends AppCompatActivity {
             } else{
                 for (int i = 0; i < num; i++) {
                     nodeList.get(i + counter).setVisibility(View.VISIBLE);
-                    Drawable d = getResources().getDrawable(R.drawable.mayan_circle);
-                    nodeList.get(i + counter).setBackground(d);
-                    nodeList.get(i + counter).setImageDrawable(d);
-
                 }
                 done = true;
                 counter = 0;

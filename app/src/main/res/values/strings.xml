@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">AncientNumbers</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Ancient Numbers</string>
+    <string name="action_settings_mayan">Mayan</string>
+    <string name="action_settings_roman">Roman</string>
 </resources>
