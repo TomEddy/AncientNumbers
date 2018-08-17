@@ -1,6 +1,5 @@
 package ancientnumbers.eddytom.com.ancientnumbers;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,15 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     TableLayout output_mayan;
     TextView output_roman;
-    Space m1space;
-    Space m2space;
+    Space m1space, m2space;
     Button convert;
-    private ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219,r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319,r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
+    private ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
     ArrayList<ImageView> nodeList;
-    Drawable d;
-    Drawable dd;
     EditText input;
-    int counter = 0;
+    Mayan_Converter m;
+    Roman_Converter r;
+    boolean mayan_on = true, roman_on = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Creating instances of all components.
         input = findViewById(R.id.input);
-        d = getResources().getDrawable(R.drawable.mayan_circle);
-        dd = getResources().getDrawable(R.drawable.mayan_bar);
         convert = findViewById(R.id.convert);
         output_mayan = findViewById(R.id.output_mayan);
         m1space = findViewById(R.id.space_one_mayan);
@@ -177,34 +173,41 @@ public class MainActivity extends AppCompatActivity {
         nodeList.add(r418);
         nodeList.add(r419);
 
-
+        m = new Mayan_Converter(nodeList);
+        r = new Roman_Converter(output_roman);
 
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int num = 999999999;
-                if(!input.getText().toString().isEmpty()) {
-                    num = Integer.parseInt(input.getText().toString());
+                if (!input.getText().toString().isEmpty()) {
+                    double maxIntCheck = Double.parseDouble(input.getText().toString());
+                    if (maxIntCheck < 2147483647) {
+                        num = (int) maxIntCheck;
+                    }
                 }
-                if(num < 160000){
-                for(int i = 0; i < nodeList.size();i++){
+                //Clear all outputs
+                for (int i = 0; i < nodeList.size(); i++) {
                     nodeList.get(i).setVisibility(View.INVISIBLE);
                 }
-                if (num >= 8000) {
-                    num = tier4(num);
+                output_roman.setText("");
+
+                //Logic gates to chose the converter and set maximums for them.
+                if (mayan_on) {
+                    if (num < 160000) {
+                        m.setNum(num);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-159999.", Toast.LENGTH_LONG).show();
+                    }
                 }
-                if (num >= 400) {
-                    num = tier3(num);
+
+                if (roman_on) {
+                    if (num <= 399) {
+                        r.conv_num(num);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-399.", Toast.LENGTH_LONG).show();
+                    }
                 }
-                if (num >= 20) {
-                    num = tier2(num);
-                }
-                if (num >= 0) {
-                    tier1(num);
-                }
-            }else{
-                    Toast.makeText(MainActivity.this, "Please enter a number within 1-159999.", Toast.LENGTH_LONG).show();
-            }
             }
         });
     }
@@ -230,6 +233,8 @@ public class MainActivity extends AppCompatActivity {
             m1space.setVisibility(View.VISIBLE);
             m2space.setVisibility(View.VISIBLE);
             output_roman.setVisibility(View.GONE);
+            mayan_on = true;
+            roman_on = false;
         }
         if (id == R.id.action_settings_roman) {
             Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
@@ -237,102 +242,9 @@ public class MainActivity extends AppCompatActivity {
             output_mayan.setVisibility(View.GONE);
             m1space.setVisibility(View.GONE);
             m2space.setVisibility(View.GONE);
+            mayan_on = false;
+            roman_on = true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-    private void tier1(int num) {
-        boolean done = false;
-        counter = 0;
-        while (!done) {
-            if (num >= 5) {
-                nodeList.get(counter).setVisibility(View.VISIBLE);
-                for (int i = 3; i > 0; i--) {
-                    nodeList.get(i + counter).setVisibility(View.GONE);
-                }
-                counter = counter + 4;
-                num = num - 5;
-            } else{
-                for (int i = 0; i < num; i++) {
-                    nodeList.get(i + counter).setVisibility(View.VISIBLE);
-                }
-                done = true;
-                counter = 0;
-            }
-        }
-    }
-
-    private int tier2(int num) {
-        boolean done = false;
-        counter = 16;
-        while (!done) {
-            if (num >= 100) {
-                nodeList.get(counter).setVisibility(View.VISIBLE);
-                for (int i = 3; i > 0; i--) {
-                    nodeList.get(i + counter).setVisibility(View.GONE);
-                }
-                counter = counter + 4;
-                num = num - 100;
-            } else if (num < 100) {
-                int repeat = (int)Math.floor(num / 20);
-                for (int i = 0; i < repeat; i++) {
-                    nodeList.get(i + counter).setVisibility(View.VISIBLE);
-                    num = num - 20;
-                }
-                done = true;
-                counter = 0;
-            }
-        }
-        return num;
-    }
-
-    private int tier3(int num) {
-        boolean done = false;
-        counter = 32;
-        while (!done) {
-            if (num >= 2000) {
-                nodeList.get(counter).setVisibility(View.VISIBLE);
-                for (int i = 3; i > 0; i--) {
-                    nodeList.get(i + counter).setVisibility(View.GONE);
-                }
-                counter = counter + 4;
-                num = num - 2000;
-            } else if (num < 2000) {
-                int repeat = (int)Math.floor(num / 400);
-                for (int i = 0; i < repeat; i++) {
-                    nodeList.get(i + counter).setVisibility(View.VISIBLE);
-                    num = num - 400;
-                }
-                done = true;
-                counter = 0;
-            }
-        }
-        return num;
-    }
-
-    private int tier4(int num) {
-        boolean done = false;
-        counter = 48;
-        while (!done) {
-            if (num >= 40000) {
-                nodeList.get(counter).setVisibility(View.VISIBLE);
-                for (int i = 3; i > 0; i--) {
-                    nodeList.get(i + counter).setVisibility(View.GONE);
-                }
-                counter = counter + 4;
-                num = num - 40000;
-            } else if (num < 40000) {
-                int repeat = (int)Math.floor(num / 8000);
-                for (int i = 0; i < repeat; i++) {
-                    nodeList.get(i + counter).setVisibility(View.VISIBLE);
-                    num = num - 8000;
-                }
-                done = true;
-                counter = 0;
-            }
-        }
-        return num;
-    }
-
 }

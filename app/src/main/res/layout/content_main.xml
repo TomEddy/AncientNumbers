@@ -845,7 +845,7 @@
             android:layout_height="match_parent"
             android:layout_weight="24"
             android:gravity="center"
-            android:text="TextView"
+            android:textSize="36sp"
             android:visibility="gone" />
 
     </LinearLayout>
