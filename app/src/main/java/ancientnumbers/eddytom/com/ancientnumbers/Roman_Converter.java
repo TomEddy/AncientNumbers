@@ -4,7 +4,6 @@ import android.widget.TextView;
 
 public class Roman_Converter {
     TextView output_roman;
-    int hund_count;
     Roman_Converter(TextView out){
         output_roman = out;
     }
@@ -21,48 +20,54 @@ public class Roman_Converter {
         romanNums[7] = "VIII";
         romanNums[8] = "IX";
 
-        hund_count = 0;
-        num = recordingHundreds(num);
-        if (num >= 90) {
-            output_roman.setText(String.format("%sC", output_roman.getText().toString()));
-            num = num - 90;
-            if (num < 10) {
-                output_roman.setText(String.format("X%s", output_roman.getText().toString()));
-            } else {
-                num = num - 10;
+        String[] romanBigNums = new String[5];
+        romanBigNums[0] = "X";
+        romanBigNums[1] = "L";
+        romanBigNums[2] = "C";
+        romanBigNums[3] = "D";
+        romanBigNums[4] = "M";
+        int counter = 0;
+
+        while(counter <= 1){
+            int divisor = 1;
+            for(int i = 0; i< counter; i++){
+                divisor = divisor *10;
             }
+            if (num >= 900/divisor) {
+                num = num - 900/divisor;
+                if (num < 100/divisor) {
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-3-2*counter]));
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-1-2*counter]));
+                } else {
+                    num = num - 100/divisor;
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-1-2*counter]));
+                }
+            }
+
+            if (num >= 400/divisor) {
+                num = num - 400/divisor;
+                if (num < 100/divisor) {
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-3-2*counter]));
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-2-2*counter]));
+                } else {
+                    num = num - 100/divisor;
+                    output_roman.setText(String.format("%s%s", output_roman.getText().toString(),romanBigNums[romanBigNums.length-2-2*counter]));
+                }
+            }
+
+            num = recordingPlaceValues(num,divisor,romanBigNums[romanBigNums.length-3-2*counter]);
+            counter++;
         }
 
-        if (num >= 40) {
-            output_roman.setText(String.format("%sL", output_roman.getText().toString()));
-            num = num - 40;
-            if (num < 10) {
-                output_roman.setText(String.format("X%s", output_roman.getText().toString()));
-            } else {
-                num = num - 10;
-            }
-        }
-        num = recordingTens(num);
         if (num > 0) {
             output_roman.setText(String.format("%s%s", output_roman.getText().toString(), romanNums[num - 1]));
         }
-
-        for(int i= 0; i < hund_count; i++){
-            output_roman.setText(String.format("C%s", output_roman.getText().toString()));
-        }
-    }
-    private int recordingTens(int num){
-        while(num >= 10){
-            output_roman.setText(String.format("%sX", output_roman.getText().toString()));
-            num = num - 10;
-        }
-        return num;
     }
 
-    private int recordingHundreds(int num){
-        while(num > 100){
-            hund_count++;
-            num = num - 100;
+    private int recordingPlaceValues(int num, int divisor, String numeral){
+        while(num >= 100/divisor){
+            output_roman.setText(String.format("%s%s", output_roman.getText().toString(),numeral));
+            num = num - 100/divisor;
         }
         return num;
     }

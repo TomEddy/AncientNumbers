@@ -1,5 +1,7 @@
 package ancientnumbers.eddytom.com.ancientnumbers;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,16 +20,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TableLayout output_mayan;
+    TableLayout output_mayan, output_egypt;
     TextView output_roman;
     Space m1space, m2space;
-    Button convert;
+    Button convert, help;
     private ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
     ArrayList<ImageView> nodeList;
     EditText input;
+    TextView civ_detail;
     Mayan_Converter m;
     Roman_Converter r;
-    boolean mayan_on = true, roman_on = false;
+    boolean mayan_on = true, roman_on = false, egypt_on = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Creating instances of all components.
         input = findViewById(R.id.input);
+        civ_detail = findViewById(R.id.group_detail);
+
         convert = findViewById(R.id.convert);
+        help = findViewById(R.id.help);
+
+        //Outputs
         output_mayan = findViewById(R.id.output_mayan);
         m1space = findViewById(R.id.space_one_mayan);
         m2space = findViewById(R.id.space_two_mayan);
         output_roman = findViewById(R.id.output_roman);
+        output_egypt = findViewById(R.id.output_egypt);
         r11 = findViewById(R.id.r11);
         r12 = findViewById(R.id.r12);
         r13 = findViewById(R.id.r13);
@@ -202,14 +211,36 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (roman_on) {
-                    if (num <= 399) {
+                    if (num <= 1000) {
                         r.conv_num(num);
                     } else {
-                        Toast.makeText(MainActivity.this, "Please enter a number within 1-399.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-1000.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
         });
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //Probably should limit to one click or do a warning.
+            public void onClick(View view) {
+                Intent browInt;
+                if (mayan_on) {
+                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://courses.lumenlearning.com/waymakermath4libarts/chapter/the-mayan-numeral-system/"));
+                    startActivity(browInt);
+                }
+
+                if (roman_on) {
+                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.britannica.com/topic/Roman-numeral"));
+                    startActivity(browInt);
+                }
+
+                if(egypt_on){
+                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discoveringegypt.com/egyptian-hieroglyphic-writing/egyptian-mathematics-numbers-hieroglyphs/"));
+                    startActivity(browInt);
+                }
+                }
+            });
     }
 
     @Override
@@ -228,22 +259,50 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_mayan) {
-            Toast.makeText(MainActivity.this, "Switching to Mayan Converter", Toast.LENGTH_LONG).show();
+            if (!mayan_on){
+                Toast.makeText(MainActivity.this, "Switching to Mayan Converter", Toast.LENGTH_LONG).show();
             output_mayan.setVisibility(View.VISIBLE);
             m1space.setVisibility(View.VISIBLE);
             m2space.setVisibility(View.VISIBLE);
             output_roman.setVisibility(View.GONE);
+            output_egypt.setVisibility(View.GONE);
             mayan_on = true;
             roman_on = false;
+            egypt_on = false;
+            //Fact check needed
+            civ_detail.setText("Mayan Civilization: 1800 BC - 1697 AD");
+         }
         }
         if (id == R.id.action_settings_roman) {
-            Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
-            output_roman.setVisibility(View.VISIBLE);
-            output_mayan.setVisibility(View.GONE);
-            m1space.setVisibility(View.GONE);
-            m2space.setVisibility(View.GONE);
-            mayan_on = false;
-            roman_on = true;
+            if(!roman_on) {
+                Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
+                output_roman.setVisibility(View.VISIBLE);
+                output_mayan.setVisibility(View.GONE);
+                output_egypt.setVisibility(View.GONE);
+                m1space.setVisibility(View.GONE);
+                m2space.setVisibility(View.GONE);
+                mayan_on = false;
+                egypt_on = false;
+                roman_on = true;
+                //Fact check needed
+                civ_detail.setText("Roman Empire: 753 BC - 1453 AD");
+            }
+        }
+
+        if (id == R.id.action_settings_egypt){
+            if(!egypt_on){
+                Toast.makeText(MainActivity.this, "Switching to Egyptian Converter", Toast.LENGTH_LONG).show();
+                output_roman.setVisibility(View.GONE);
+                output_mayan.setVisibility(View.GONE);
+                output_egypt.setVisibility(View.VISIBLE);
+                m1space.setVisibility(View.GONE);
+                m2space.setVisibility(View.GONE);
+                mayan_on = false;
+                egypt_on = true;
+                roman_on = false;
+                //Fact check needed
+                civ_detail.setText("Ancient Egypt: 3100 BC - 30 BC");
+            }
         }
         return super.onOptionsItemSelected(item);
     }
