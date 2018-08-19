@@ -11,13 +11,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="24"
+            android:layout_weight="12"
             android:orientation="vertical">
 
             <EditText
@@ -26,9 +26,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="5"
                 android:ems="10"
-                android:hint="Input"
+                android:hint="@string/input"
                 android:inputType="number"
-                android:textSize="36sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="48sp"
                 android:visibility="visible" />
 
             <TextView
@@ -37,13 +38,15 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Mayan Civilization: 1800 BC - 1697 AD" />
+                android:text="@string/mayan_civ"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="12"
+            android:layout_weight="4"
             android:orientation="vertical">
 
             <Button
@@ -54,8 +57,10 @@
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="6dp"
                 android:layout_weight="5"
-                android:background="@color/colorAccent"
-                android:text="Convert"
+                android:background="@color/colorPrimary"
+                android:text="@string/Convert"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp"
                 android:visibility="visible" />
 
             <Button
@@ -67,7 +72,9 @@
                 android:layout_marginTop="1dp"
                 android:layout_weight="1"
                 android:background="@color/helpButton"
-                android:text="?"
+                android:text="@string/helptext"
+                android:textColor="@android:color/background_light"
+                android:textSize="14sp"
                 android:visibility="visible" />
         </LinearLayout>
 
@@ -75,20 +82,20 @@
             android:id="@+id/space_one_mayan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="6" />
+            android:layout_weight="3" />
 
         <TableLayout
             android:id="@+id/output_mayan"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="12"
+            android:layout_weight="6"
             android:gravity="center_vertical"
             android:visibility="visible">
 
             <TableRow
                 android:id="@+id/rfour"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -101,6 +108,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -111,6 +119,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -121,6 +130,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -131,6 +141,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
             </TableRow>
@@ -138,7 +149,7 @@
             <TableRow
                 android:id="@+id/rfour2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -187,7 +198,7 @@
             <TableRow
                 android:id="@+id/rfour3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -199,6 +210,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -209,6 +221,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -219,6 +232,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
 
@@ -229,6 +243,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/mayan_bar"
+                    android:contentDescription="TODO"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
             </TableRow>
@@ -236,7 +251,7 @@
             <TableRow
                 android:id="@+id/rfour4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="10dip"
@@ -280,14 +295,27 @@
                     android:background="@drawable/mayan_bar"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
+
             </TableRow>
+
+            <ImageView
+                android:id="@+id/rfourZero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:maxHeight="100dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:srcCompat="@drawable/cero_maya_p" />
 
             <View style="@style/Divider" />
 
             <TableRow
                 android:id="@+id/rthree"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -336,7 +364,7 @@
             <TableRow
                 android:id="@+id/rthree2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -385,7 +413,7 @@
             <TableRow
                 android:id="@+id/rthree3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -434,7 +462,7 @@
             <TableRow
                 android:id="@+id/rthree4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="10dip"
@@ -480,12 +508,24 @@
                     app:srcCompat="@drawable/mayan_bar" />
             </TableRow>
 
+            <ImageView
+                android:id="@+id/rthreeZero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:maxWidth="100dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:srcCompat="@drawable/cero_maya_p" />
+
             <View style="@style/Divider" />
 
             <TableRow
                 android:id="@+id/rtwo"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -534,7 +574,7 @@
             <TableRow
                 android:id="@+id/rtwo2"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="5dip">
 
@@ -581,7 +621,7 @@
             <TableRow
                 android:id="@+id/rtwo3"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="5dip">
 
@@ -628,7 +668,7 @@
             <TableRow
                 android:id="@+id/rtwo4"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="10dip">
 
@@ -673,12 +713,24 @@
 
             </TableRow>
 
+            <ImageView
+                android:id="@+id/rtwoZero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:maxHeight="100dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:srcCompat="@drawable/cero_maya_p" />
+
             <View style="@style/Divider" />
 
             <TableRow
                 android:id="@+id/rone"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="5dip"
@@ -728,7 +780,7 @@
             <TableRow
                 android:id="@+id/rone2"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="5dip">
 
@@ -775,7 +827,7 @@
             <TableRow
                 android:id="@+id/rone3"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="5dip">
 
@@ -823,7 +875,7 @@
             <TableRow
                 android:id="@+id/rone4"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingBottom="10dip">
 
@@ -866,45 +918,183 @@
                     android:visibility="invisible"
                     app:srcCompat="@drawable/mayan_bar" />
             </TableRow>
+
+            <ImageView
+                android:id="@+id/roneZero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:maxHeight="100dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:srcCompat="@drawable/cero_maya_p" />
         </TableLayout>
+
         <Space
             android:id="@+id/space_two_mayan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="6" />
+            android:layout_weight="3" />
 
         <TextView
             android:id="@+id/output_roman"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="24"
+            android:layout_weight="12"
             android:gravity="center"
-            android:textSize="36sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="48sp"
             android:visibility="gone" />
 
-        <TableLayout
+        <LinearLayout
             android:id="@+id/output_egypt"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="24"
+            android:layout_weight="12"
+            android:orientation="horizontal"
             android:visibility="gone">
 
-            <TableRow
+            <TableLayout
+                android:id="@+id/ones"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                    <ImageView
+                        android:id="@+id/eg_r11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="false"
+                        android:cropToPadding="true"
+                        android:maxHeight=" "
+                        android:maxWidth="20dp"
+                        android:minHeight="50dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
+                    <ImageView
+                        android:id="@+id/eg_r12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+
+                    <ImageView
+                        android:id="@+id/eg_r13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/eg_r21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+
+                    <ImageView
+                        android:id="@+id/eg_r22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+
+                    <ImageView
+                        android:id="@+id/eg_r23"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/eg_r31"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+
+                    <ImageView
+                        android:id="@+id/eg_r32"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+
+                    <ImageView
+                        android:id="@+id/eg_r33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:maxHeight="100dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/egypt_nums_one" />
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -9,10 +9,11 @@ import java.util.ArrayList;
 public class Mayan_Converter extends AppCompatActivity {
 
     ArrayList<ImageView> nodeList;
+    ArrayList<ImageView> zeroList;
 
-
-    Mayan_Converter(ArrayList<ImageView> n){
+    Mayan_Converter(ArrayList<ImageView> n,ArrayList<ImageView> nn){
         nodeList = n;
+        zeroList = nn;
     }
     private int tier(int num, int tier){
         boolean done = false;
@@ -43,17 +44,42 @@ public class Mayan_Converter extends AppCompatActivity {
     }
     public void setNum(int n){
             int num = n;
+            boolean includeZeros = false;
             if (num >= 8000) {
+                includeZeros = true;
             num = tier(num,3);
-        }
+        }else if(includeZeros){
+                //Currently always false but needed for expansion
+                zeroList.get(3).setVisibility(View.VISIBLE);
+                for(int i = 0; i < 16; i++){
+                    nodeList.get(48+i).setVisibility(View.GONE);
+                }
+            }
         if (num >= 400) {
+                includeZeros = true;
             num = tier(num,2);
+        }else if (includeZeros){
+            zeroList.get(2).setVisibility(View.VISIBLE);
+            for(int i = 0; i < 16; i++){
+                nodeList.get(32+i).setVisibility(View.GONE);
+            }
         }
         if (num >= 20) {
+                includeZeros = true;
             num = tier(num,1);
+        }else if(includeZeros){
+            zeroList.get(1).setVisibility(View.VISIBLE);
+            for(int i = 0; i < 16; i++){
+                nodeList.get(16+i).setVisibility(View.GONE);
+            }
         }
-        if (num >= 0) {
+        if (num > 0) {
             num = tier(num,0);
+        } else if (includeZeros){
+            zeroList.get(0).setVisibility(View.VISIBLE);
+            for(int i = 0; i < 16; i++){
+                nodeList.get(i).setVisibility(View.GONE);
+            }
         }
     }
 }

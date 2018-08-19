@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -20,16 +21,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TableLayout output_mayan, output_egypt;
+    TableLayout output_mayan;
+    LinearLayout output_egypt;
     TextView output_roman;
     Space m1space, m2space;
     Button convert, help;
-    private ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
-    ArrayList<ImageView> nodeList;
+    ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
+    ImageView er11, er12,er13,er21,er22,er23,er31,er32,er33;
+    ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList;
     EditText input;
     TextView civ_detail;
-    Mayan_Converter m;
     Roman_Converter r;
+    Egyptian_Converter e;
+    Mayan_Converter m;
     boolean mayan_on = true, roman_on = false, egypt_on = false;
 
     @Override
@@ -40,18 +44,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Creating instances of all components.
+        //Misc Components
         input = findViewById(R.id.input);
         civ_detail = findViewById(R.id.group_detail);
-
         convert = findViewById(R.id.convert);
         help = findViewById(R.id.help);
 
         //Outputs
+        //Mayan Output
         output_mayan = findViewById(R.id.output_mayan);
         m1space = findViewById(R.id.space_one_mayan);
         m2space = findViewById(R.id.space_two_mayan);
-        output_roman = findViewById(R.id.output_roman);
-        output_egypt = findViewById(R.id.output_egypt);
         r11 = findViewById(R.id.r11);
         r12 = findViewById(R.id.r12);
         r13 = findViewById(R.id.r13);
@@ -116,74 +119,109 @@ public class MainActivity extends AppCompatActivity {
         r417 = findViewById(R.id.r417);
         r418 = findViewById(R.id.r418);
         r419 = findViewById(R.id.r419);
-        nodeList = new ArrayList<>();
-        nodeList.add(r11);
-        nodeList.add(r12);
-        nodeList.add(r13);
-        nodeList.add(r14);
-        nodeList.add(r16);
-        nodeList.add(r17);
-        nodeList.add(r18);
-        nodeList.add(r19);
-        nodeList.add(r111);
-        nodeList.add(r112);
-        nodeList.add(r113);
-        nodeList.add(r114);
-        nodeList.add(r116);
-        nodeList.add(r117);
-        nodeList.add(r118);
-        nodeList.add(r119);
-        nodeList.add(r21);
-        nodeList.add(r22);
-        nodeList.add(r23);
-        nodeList.add(r24);
-        nodeList.add(r26);
-        nodeList.add(r27);
-        nodeList.add(r28);
-        nodeList.add(r29);
-        nodeList.add(r211);
-        nodeList.add(r212);
-        nodeList.add(r213);
-        nodeList.add(r214);
-        nodeList.add(r216);
-        nodeList.add(r217);
-        nodeList.add(r218);
-        nodeList.add(r219);
-        nodeList.add(r31);
-        nodeList.add(r32);
-        nodeList.add(r33);
-        nodeList.add(r34);
-        nodeList.add(r36);
-        nodeList.add(r37);
-        nodeList.add(r38);
-        nodeList.add(r39);
-        nodeList.add(r311);
-        nodeList.add(r312);
-        nodeList.add(r313);
-        nodeList.add(r314);
-        nodeList.add(r316);
-        nodeList.add(r317);
-        nodeList.add(r318);
-        nodeList.add(r319);
-        nodeList.add(r41);
-        nodeList.add(r42);
-        nodeList.add(r43);
-        nodeList.add(r44);
-        nodeList.add(r46);
-        nodeList.add(r47);
-        nodeList.add(r48);
-        nodeList.add(r49);
-        nodeList.add(r411);
-        nodeList.add(r412);
-        nodeList.add(r413);
-        nodeList.add(r414);
-        nodeList.add(r416);
-        nodeList.add(r417);
-        nodeList.add(r418);
-        nodeList.add(r419);
+        mayan_nodeList = new ArrayList<>();
+        mayan_nodeList.add(r11);
+        mayan_nodeList.add(r12);
+        mayan_nodeList.add(r13);
+        mayan_nodeList.add(r14);
+        mayan_nodeList.add(r16);
+        mayan_nodeList.add(r17);
+        mayan_nodeList.add(r18);
+        mayan_nodeList.add(r19);
+        mayan_nodeList.add(r111);
+        mayan_nodeList.add(r112);
+        mayan_nodeList.add(r113);
+        mayan_nodeList.add(r114);
+        mayan_nodeList.add(r116);
+        mayan_nodeList.add(r117);
+        mayan_nodeList.add(r118);
+        mayan_nodeList.add(r119);
+        mayan_nodeList.add(r21);
+        mayan_nodeList.add(r22);
+        mayan_nodeList.add(r23);
+        mayan_nodeList.add(r24);
+        mayan_nodeList.add(r26);
+        mayan_nodeList.add(r27);
+        mayan_nodeList.add(r28);
+        mayan_nodeList.add(r29);
+        mayan_nodeList.add(r211);
+        mayan_nodeList.add(r212);
+        mayan_nodeList.add(r213);
+        mayan_nodeList.add(r214);
+        mayan_nodeList.add(r216);
+        mayan_nodeList.add(r217);
+        mayan_nodeList.add(r218);
+        mayan_nodeList.add(r219);
+        mayan_nodeList.add(r31);
+        mayan_nodeList.add(r32);
+        mayan_nodeList.add(r33);
+        mayan_nodeList.add(r34);
+        mayan_nodeList.add(r36);
+        mayan_nodeList.add(r37);
+        mayan_nodeList.add(r38);
+        mayan_nodeList.add(r39);
+        mayan_nodeList.add(r311);
+        mayan_nodeList.add(r312);
+        mayan_nodeList.add(r313);
+        mayan_nodeList.add(r314);
+        mayan_nodeList.add(r316);
+        mayan_nodeList.add(r317);
+        mayan_nodeList.add(r318);
+        mayan_nodeList.add(r319);
+        mayan_nodeList.add(r41);
+        mayan_nodeList.add(r42);
+        mayan_nodeList.add(r43);
+        mayan_nodeList.add(r44);
+        mayan_nodeList.add(r46);
+        mayan_nodeList.add(r47);
+        mayan_nodeList.add(r48);
+        mayan_nodeList.add(r49);
+        mayan_nodeList.add(r411);
+        mayan_nodeList.add(r412);
+        mayan_nodeList.add(r413);
+        mayan_nodeList.add(r414);
+        mayan_nodeList.add(r416);
+        mayan_nodeList.add(r417);
+        mayan_nodeList.add(r418);
+        mayan_nodeList.add(r419);
+        ImageView r1 = findViewById(R.id.roneZero);
+        ImageView r2 = findViewById(R.id.rtwoZero);
+        ImageView r3 = findViewById(R.id.rthreeZero);
+        ImageView r4 = findViewById(R.id.rfourZero);
+        mayan_zeroList =  new ArrayList<>();
+        mayan_zeroList.add(r1);
+        mayan_zeroList.add(r2);
+        mayan_zeroList.add(r3);
+        mayan_zeroList.add(r4);
 
-        m = new Mayan_Converter(nodeList);
+        //Roman Output
+        output_roman = findViewById(R.id.output_roman);
+        //Egyptian Output
+        output_egypt = findViewById(R.id.output_egypt);
+        er11 = findViewById(R.id.eg_r11);
+        er12 = findViewById(R.id.eg_r12);
+        er13 = findViewById(R.id.eg_r13);
+        er21 = findViewById(R.id.eg_r21);
+        er22 = findViewById(R.id.eg_r22);
+        er23 = findViewById(R.id.eg_r23);
+        er31 = findViewById(R.id.eg_r31);
+        er32 = findViewById(R.id.eg_r32);
+        er33 = findViewById(R.id.eg_r33);
+        egypt_nodeList =  new ArrayList<>();
+        egypt_nodeList.add(er11);
+        egypt_nodeList.add(er12);
+        egypt_nodeList.add(er13);
+        egypt_nodeList.add(er21);
+        egypt_nodeList.add(er22);
+        egypt_nodeList.add(er23);
+        egypt_nodeList.add(er31);
+        egypt_nodeList.add(er32);
+        egypt_nodeList.add(er33);
+
+        //Converter Creation
+        m = new Mayan_Converter(mayan_nodeList, mayan_zeroList);
         r = new Roman_Converter(output_roman);
+        e = new Egyptian_Converter(egypt_nodeList);
 
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,10 +234,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 //Clear all outputs
-                for (int i = 0; i < nodeList.size(); i++) {
-                    nodeList.get(i).setVisibility(View.INVISIBLE);
+                for (int i = 0; i < mayan_nodeList.size(); i++) {
+                    mayan_nodeList.get(i).setVisibility(View.INVISIBLE);
+                }
+                for (int i = 0; i < mayan_zeroList.size(); i++) {
+                    mayan_zeroList.get(i).setVisibility(View.GONE);
                 }
                 output_roman.setText("");
+                for (int i = 0; i < egypt_nodeList.size(); i++) {
+                    egypt_nodeList.get(i).setVisibility(View.GONE);
+                }
 
                 //Logic gates to chose the converter and set maximums for them.
                 if (mayan_on) {
@@ -215,6 +259,14 @@ public class MainActivity extends AppCompatActivity {
                         r.conv_num(num);
                     } else {
                         Toast.makeText(MainActivity.this, "Please enter a number within 1-1000.", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                if (egypt_on) {
+                    if (num <= 9) {
+                        e.setNum(num);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-9.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
