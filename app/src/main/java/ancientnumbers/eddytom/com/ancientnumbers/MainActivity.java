@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button convert, help;
     ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
     ImageView er11, er12,er13,er21,er22,er23,er31,er32,er33;
+    ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
+    ImageView er311, er312,er313,er321,er322,er323,er331,er332,er333;
+    ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
     ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList;
     EditText input;
     TextView civ_detail;
@@ -207,6 +210,33 @@ public class MainActivity extends AppCompatActivity {
         er31 = findViewById(R.id.eg_r31);
         er32 = findViewById(R.id.eg_r32);
         er33 = findViewById(R.id.eg_r33);
+        er211 = findViewById(R.id.eg2_r11);
+        er212 = findViewById(R.id.eg2_r12);
+        er213 = findViewById(R.id.eg2_r13);
+        er221 = findViewById(R.id.eg2_r21);
+        er222 = findViewById(R.id.eg2_r22);
+        er223 = findViewById(R.id.eg2_r23);
+        er231 = findViewById(R.id.eg2_r31);
+        er232 = findViewById(R.id.eg2_r32);
+        er233 = findViewById(R.id.eg2_r33);
+        er311 = findViewById(R.id.eg3_r11);
+        er312 = findViewById(R.id.eg3_r12);
+        er313 = findViewById(R.id.eg3_r13);
+        er321 = findViewById(R.id.eg3_r21);
+        er322 = findViewById(R.id.eg3_r22);
+        er323 = findViewById(R.id.eg3_r23);
+        er331 = findViewById(R.id.eg3_r31);
+        er332 = findViewById(R.id.eg3_r32);
+        er333 = findViewById(R.id.eg3_r33);
+        er411 = findViewById(R.id.eg4_r11);
+        er412 = findViewById(R.id.eg4_r12);
+        er413 = findViewById(R.id.eg4_r13);
+        er421 = findViewById(R.id.eg4_r21);
+        er422 = findViewById(R.id.eg4_r22);
+        er423 = findViewById(R.id.eg4_r23);
+        er431 = findViewById(R.id.eg4_r31);
+        er432 = findViewById(R.id.eg4_r32);
+        er433 = findViewById(R.id.eg4_r33);
         egypt_nodeList =  new ArrayList<>();
         egypt_nodeList.add(er11);
         egypt_nodeList.add(er12);
@@ -217,6 +247,33 @@ public class MainActivity extends AppCompatActivity {
         egypt_nodeList.add(er31);
         egypt_nodeList.add(er32);
         egypt_nodeList.add(er33);
+        egypt_nodeList.add(er211);
+        egypt_nodeList.add(er212);
+        egypt_nodeList.add(er213);
+        egypt_nodeList.add(er221);
+        egypt_nodeList.add(er222);
+        egypt_nodeList.add(er223);
+        egypt_nodeList.add(er231);
+        egypt_nodeList.add(er232);
+        egypt_nodeList.add(er233);
+        egypt_nodeList.add(er311);
+        egypt_nodeList.add(er312);
+        egypt_nodeList.add(er313);
+        egypt_nodeList.add(er321);
+        egypt_nodeList.add(er322);
+        egypt_nodeList.add(er323);
+        egypt_nodeList.add(er331);
+        egypt_nodeList.add(er332);
+        egypt_nodeList.add(er333);
+        egypt_nodeList.add(er411);
+        egypt_nodeList.add(er412);
+        egypt_nodeList.add(er413);
+        egypt_nodeList.add(er421);
+        egypt_nodeList.add(er422);
+        egypt_nodeList.add(er423);
+        egypt_nodeList.add(er431);
+        egypt_nodeList.add(er432);
+        egypt_nodeList.add(er433);
 
         //Converter Creation
         m = new Mayan_Converter(mayan_nodeList, mayan_zeroList);
@@ -263,10 +320,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (egypt_on) {
-                    if (num <= 9) {
+                    if (num <= 9999) {
                         e.setNum(num);
                     } else {
-                        Toast.makeText(MainActivity.this, "Please enter a number within 1-9.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-9999.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
