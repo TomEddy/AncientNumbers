@@ -1473,7 +1473,41 @@
             </TableLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/output_bab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="12"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <ImageView
+                android:id="@+id/bab_tens"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:srcCompat="@drawable/bab_10" />
+
+            <ImageView
+                android:id="@+id/bab_one"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                app:srcCompat="@drawable/bab_1" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>

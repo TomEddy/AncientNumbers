@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     TableLayout output_mayan;
-    LinearLayout output_egypt;
+    LinearLayout output_egypt, output_bab;
     TextView output_roman;
     Space m1space, m2space;
     Button convert, help;
@@ -31,13 +31,15 @@ public class MainActivity extends AppCompatActivity {
     ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
     ImageView er311, er312,er313,er321,er322,er323,er331,er332,er333;
     ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
-    ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList;
+    ImageView bab1,bab10;
+    ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList, bab_nodelist;
     EditText input;
     TextView civ_detail;
     Roman_Converter r;
     Egyptian_Converter e;
     Mayan_Converter m;
-    boolean mayan_on = true, roman_on = false, egypt_on = false;
+    Bab_Converter b;
+    boolean mayan_on = true, roman_on = false, egypt_on = false, bab_on = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -275,10 +277,20 @@ public class MainActivity extends AppCompatActivity {
         egypt_nodeList.add(er432);
         egypt_nodeList.add(er433);
 
+        //Babylonian Output
+        output_bab = findViewById(R.id.output_bab);
+
+        bab1 = findViewById(R.id.bab_one);
+        bab10 = findViewById(R.id.bab_tens);
+        bab_nodelist =  new ArrayList<>();
+        bab_nodelist.add(bab1);
+        bab_nodelist.add(bab10);
+
         //Converter Creation
         m = new Mayan_Converter(mayan_nodeList, mayan_zeroList);
         r = new Roman_Converter(output_roman);
         e = new Egyptian_Converter(egypt_nodeList);
+        b = new Bab_Converter(bab_nodelist);
 
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,6 +312,9 @@ public class MainActivity extends AppCompatActivity {
                 output_roman.setText("");
                 for (int i = 0; i < egypt_nodeList.size(); i++) {
                     egypt_nodeList.get(i).setVisibility(View.GONE);
+                }
+                for (int i = 0; i < bab_nodelist.size(); i++) {
+                    bab_nodelist.get(i).setVisibility(View.GONE);
                 }
 
                 //Logic gates to chose the converter and set maximums for them.
@@ -326,6 +341,14 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Please enter a number within 1-9999.", Toast.LENGTH_LONG).show();
                     }
                 }
+
+                if (bab_on) {
+                    if (num <= 59) {
+                        b.setNum(num);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-59.", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 
@@ -346,6 +369,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if(egypt_on){
                     browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discoveringegypt.com/egyptian-hieroglyphic-writing/egyptian-mathematics-numbers-hieroglyphs/"));
+                    startActivity(browInt);
+                }
+
+                if(bab_on){
+                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www-history.mcs.st-and.ac.uk/HistTopics/Babylonian_numerals.html"));
                     startActivity(browInt);
                 }
                 }
@@ -375,9 +403,11 @@ public class MainActivity extends AppCompatActivity {
             m2space.setVisibility(View.VISIBLE);
             output_roman.setVisibility(View.GONE);
             output_egypt.setVisibility(View.GONE);
+            output_bab.setVisibility(View.GONE);
             mayan_on = true;
             roman_on = false;
             egypt_on = false;
+            bab_on = false;
             //Fact check needed
             civ_detail.setText("Mayan Civilization: 1800 BC - 1697 AD");
          }
@@ -390,9 +420,11 @@ public class MainActivity extends AppCompatActivity {
                 output_egypt.setVisibility(View.GONE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
+                output_bab.setVisibility(View.GONE);
                 mayan_on = false;
                 egypt_on = false;
                 roman_on = true;
+                bab_on = false;
                 //Fact check needed
                 civ_detail.setText("Roman Empire: 753 BC - 1453 AD");
             }
@@ -406,11 +438,31 @@ public class MainActivity extends AppCompatActivity {
                 output_egypt.setVisibility(View.VISIBLE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
+                output_bab.setVisibility(View.GONE);
                 mayan_on = false;
+                bab_on = false;
                 egypt_on = true;
                 roman_on = false;
                 //Fact check needed
                 civ_detail.setText("Ancient Egypt: 3100 BC - 30 BC");
+            }
+        }
+
+        if (id == R.id.action_settings_bab){
+            if(!bab_on){
+                Toast.makeText(MainActivity.this, "Switching to Babylonian Converter", Toast.LENGTH_LONG).show();
+                output_bab.setVisibility(View.VISIBLE);
+                output_roman.setVisibility(View.GONE);
+                output_mayan.setVisibility(View.GONE);
+                output_egypt.setVisibility(View.GONE);
+                m1space.setVisibility(View.GONE);
+                m2space.setVisibility(View.GONE);
+                bab_on = true;
+                mayan_on = false;
+                egypt_on = false;
+                roman_on = false;
+                //Fact check needed
+                civ_detail.setText("Ancient Babylonia: 1895 BC - 539 BC");
             }
         }
         return super.onOptionsItemSelected(item);
