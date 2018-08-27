@@ -21,12 +21,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TableLayout output_mayan;
-    LinearLayout output_egypt, output_bab;
+    LinearLayout output_egypt, output_bab, output_mayan_v2;
     TextView output_roman;
     Space m1space, m2space;
     Button convert, help;
-    ImageView r11, r12, r13, r14, r16, r17, r18, r19, r111, r112, r113, r114, r116, r117, r118, r119, r21, r22, r23, r24, r26, r27, r28, r29, r211, r212, r213, r214, r216, r217, r218, r219, r31, r32, r33, r34, r36, r37, r38, r39, r311, r312, r313, r314, r316, r317, r318, r319, r41, r42, r43, r44, r46, r47, r48, r49, r411, r412, r413, r414, r416, r417, r418, r419;
+    ImageView may11,may12,may13,may14, may21,may22,may23,may24,may31,may32,may33,may34,may41,may42,may43,may44;
     ImageView er11, er12,er13,er21,er22,er23,er31,er32,er33;
     ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
     ImageView er311, er312,er313,er321,er322,er323,er331,er332,er333;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextView civ_detail;
     Roman_Converter r;
     Egyptian_Converter e;
-    Mayan_Converter m;
+    Mayan_Converter_v2 m;
     Bab_Converter b;
     int current_conv = 1;
 
@@ -57,138 +56,43 @@ public class MainActivity extends AppCompatActivity {
 
         //Outputs
         //Mayan Output
-        output_mayan = findViewById(R.id.output_mayan);
+        output_mayan_v2 = findViewById(R.id.output_mayan_v2);
         m1space = findViewById(R.id.space_one_mayan);
         m2space = findViewById(R.id.space_two_mayan);
-        r11 = findViewById(R.id.r11);
-        r12 = findViewById(R.id.r12);
-        r13 = findViewById(R.id.r13);
-        r14 = findViewById(R.id.r14);
-        r16 = findViewById(R.id.r16);
-        r17 = findViewById(R.id.r17);
-        r18 = findViewById(R.id.r18);
-        r19 = findViewById(R.id.r19);
-        r111 = findViewById(R.id.r111);
-        r112 = findViewById(R.id.r112);
-        r113 = findViewById(R.id.r113);
-        r114 = findViewById(R.id.r114);
-        r116 = findViewById(R.id.r116);
-        r117 = findViewById(R.id.r117);
-        r118 = findViewById(R.id.r118);
-        r119 = findViewById(R.id.r119);
-        r21 = findViewById(R.id.r21);
-        r22 = findViewById(R.id.r22);
-        r23 = findViewById(R.id.r23);
-        r24 = findViewById(R.id.r24);
-        r26 = findViewById(R.id.r26);
-        r27 = findViewById(R.id.r27);
-        r28 = findViewById(R.id.r28);
-        r29 = findViewById(R.id.r29);
-        r211 = findViewById(R.id.r211);
-        r212 = findViewById(R.id.r212);
-        r213 = findViewById(R.id.r213);
-        r214 = findViewById(R.id.r214);
-        r216 = findViewById(R.id.r216);
-        r217 = findViewById(R.id.r217);
-        r218 = findViewById(R.id.r218);
-        r219 = findViewById(R.id.r219);
-        r31 = findViewById(R.id.r31);
-        r32 = findViewById(R.id.r32);
-        r33 = findViewById(R.id.r33);
-        r34 = findViewById(R.id.r34);
-        r36 = findViewById(R.id.r36);
-        r37 = findViewById(R.id.r37);
-        r38 = findViewById(R.id.r38);
-        r39 = findViewById(R.id.r39);
-        r311 = findViewById(R.id.r311);
-        r312 = findViewById(R.id.r312);
-        r313 = findViewById(R.id.r313);
-        r314 = findViewById(R.id.r314);
-        r316 = findViewById(R.id.r316);
-        r317 = findViewById(R.id.r317);
-        r318 = findViewById(R.id.r318);
-        r319 = findViewById(R.id.r319);
-        r41 = findViewById(R.id.r41);
-        r42 = findViewById(R.id.r42);
-        r43 = findViewById(R.id.r43);
-        r44 = findViewById(R.id.r44);
-        r46 = findViewById(R.id.r46);
-        r47 = findViewById(R.id.r47);
-        r48 = findViewById(R.id.r48);
-        r49 = findViewById(R.id.r49);
-        r411 = findViewById(R.id.r411);
-        r412 = findViewById(R.id.r412);
-        r413 = findViewById(R.id.r413);
-        r414 = findViewById(R.id.r414);
-        r416 = findViewById(R.id.r416);
-        r417 = findViewById(R.id.r417);
-        r418 = findViewById(R.id.r418);
-        r419 = findViewById(R.id.r419);
+
+        may11 = findViewById(R.id.may_1_1);
+        may12 = findViewById(R.id.may_1_2);
+        may13 = findViewById(R.id.may_1_3);
+        may14 = findViewById(R.id.may_1_4);
+        may21 = findViewById(R.id.may_2_1);
+        may22 = findViewById(R.id.may_2_2);
+        may23 = findViewById(R.id.may_2_3);
+        may24 = findViewById(R.id.may_2_4);
+        may31 = findViewById(R.id.may_3_1);
+        may32 = findViewById(R.id.may_3_2);
+        may33 = findViewById(R.id.may_3_3);
+        may34 = findViewById(R.id.may_3_4);
+        may41 = findViewById(R.id.may_4_1);
+        may42 = findViewById(R.id.may_4_2);
+        may43 = findViewById(R.id.may_4_3);
+        may44 = findViewById(R.id.may_4_4);
         mayan_nodeList = new ArrayList<>();
-        mayan_nodeList.add(r11);
-        mayan_nodeList.add(r12);
-        mayan_nodeList.add(r13);
-        mayan_nodeList.add(r14);
-        mayan_nodeList.add(r16);
-        mayan_nodeList.add(r17);
-        mayan_nodeList.add(r18);
-        mayan_nodeList.add(r19);
-        mayan_nodeList.add(r111);
-        mayan_nodeList.add(r112);
-        mayan_nodeList.add(r113);
-        mayan_nodeList.add(r114);
-        mayan_nodeList.add(r116);
-        mayan_nodeList.add(r117);
-        mayan_nodeList.add(r118);
-        mayan_nodeList.add(r119);
-        mayan_nodeList.add(r21);
-        mayan_nodeList.add(r22);
-        mayan_nodeList.add(r23);
-        mayan_nodeList.add(r24);
-        mayan_nodeList.add(r26);
-        mayan_nodeList.add(r27);
-        mayan_nodeList.add(r28);
-        mayan_nodeList.add(r29);
-        mayan_nodeList.add(r211);
-        mayan_nodeList.add(r212);
-        mayan_nodeList.add(r213);
-        mayan_nodeList.add(r214);
-        mayan_nodeList.add(r216);
-        mayan_nodeList.add(r217);
-        mayan_nodeList.add(r218);
-        mayan_nodeList.add(r219);
-        mayan_nodeList.add(r31);
-        mayan_nodeList.add(r32);
-        mayan_nodeList.add(r33);
-        mayan_nodeList.add(r34);
-        mayan_nodeList.add(r36);
-        mayan_nodeList.add(r37);
-        mayan_nodeList.add(r38);
-        mayan_nodeList.add(r39);
-        mayan_nodeList.add(r311);
-        mayan_nodeList.add(r312);
-        mayan_nodeList.add(r313);
-        mayan_nodeList.add(r314);
-        mayan_nodeList.add(r316);
-        mayan_nodeList.add(r317);
-        mayan_nodeList.add(r318);
-        mayan_nodeList.add(r319);
-        mayan_nodeList.add(r41);
-        mayan_nodeList.add(r42);
-        mayan_nodeList.add(r43);
-        mayan_nodeList.add(r44);
-        mayan_nodeList.add(r46);
-        mayan_nodeList.add(r47);
-        mayan_nodeList.add(r48);
-        mayan_nodeList.add(r49);
-        mayan_nodeList.add(r411);
-        mayan_nodeList.add(r412);
-        mayan_nodeList.add(r413);
-        mayan_nodeList.add(r414);
-        mayan_nodeList.add(r416);
-        mayan_nodeList.add(r417);
-        mayan_nodeList.add(r418);
-        mayan_nodeList.add(r419);
+        mayan_nodeList.add(may11);
+        mayan_nodeList.add(may12);
+        mayan_nodeList.add(may13);
+        mayan_nodeList.add(may14);
+        mayan_nodeList.add(may21);
+        mayan_nodeList.add(may22);
+        mayan_nodeList.add(may23);
+        mayan_nodeList.add(may24);
+        mayan_nodeList.add(may31);
+        mayan_nodeList.add(may32);
+        mayan_nodeList.add(may33);
+        mayan_nodeList.add(may34);
+        mayan_nodeList.add(may41);
+        mayan_nodeList.add(may42);
+        mayan_nodeList.add(may43);
+        mayan_nodeList.add(may44);
         ImageView r1 = findViewById(R.id.roneZero);
         ImageView r2 = findViewById(R.id.rtwoZero);
         ImageView r3 = findViewById(R.id.rthreeZero);
@@ -198,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
         mayan_zeroList.add(r2);
         mayan_zeroList.add(r3);
         mayan_zeroList.add(r4);
+
+
+
+
+
 
         //Roman Output
         output_roman = findViewById(R.id.output_roman);
@@ -299,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         bab_nodelist.add(bab10_4);
 
         //Converter Creation
-        m = new Mayan_Converter(mayan_nodeList, mayan_zeroList);
+        m = new Mayan_Converter_v2(mayan_nodeList, mayan_zeroList);
         r = new Roman_Converter(output_roman);
         e = new Egyptian_Converter(egypt_nodeList);
         b = new Bab_Converter(bab_nodelist);
@@ -410,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings_mayan) {
             if (current_conv != 1){
                 Toast.makeText(MainActivity.this, "Switching to Mayan Converter", Toast.LENGTH_LONG).show();
-            output_mayan.setVisibility(View.VISIBLE);
+            output_mayan_v2.setVisibility(View.VISIBLE);
             m1space.setVisibility(View.VISIBLE);
             m2space.setVisibility(View.VISIBLE);
             output_roman.setVisibility(View.GONE);
@@ -425,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             if(current_conv != 2) {
                 Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
                 output_roman.setVisibility(View.VISIBLE);
-                output_mayan.setVisibility(View.GONE);
+                output_mayan_v2.setVisibility(View.GONE);
                 output_egypt.setVisibility(View.GONE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
@@ -440,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
             if(current_conv != 3){
                 Toast.makeText(MainActivity.this, "Switching to Egyptian Converter", Toast.LENGTH_LONG).show();
                 output_roman.setVisibility(View.GONE);
-                output_mayan.setVisibility(View.GONE);
+                output_mayan_v2.setVisibility(View.GONE);
                 output_egypt.setVisibility(View.VISIBLE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
@@ -456,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Switching to Babylonian Converter", Toast.LENGTH_LONG).show();
                 output_bab.setVisibility(View.VISIBLE);
                 output_roman.setVisibility(View.GONE);
-                output_mayan.setVisibility(View.GONE);
+                output_mayan_v2.setVisibility(View.GONE);
                 output_egypt.setVisibility(View.GONE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
