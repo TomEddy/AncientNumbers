@@ -61,17 +61,19 @@ public class Bab_Converter extends AppCompatActivity {
         if (num >= level * 10) {
             while (num >= level * 10) {
                 tens_counter++;
-                num = num - level * 10;
+                num = num - (level * 10);
             }
-            nodeList.get(1).setVisibility(View.VISIBLE);
-            nodeList.get(1).setImageResource(image_Resources_Tens.get(tens_counter - 1));
+            nodeList.get((2*tier)+1).setVisibility(View.VISIBLE);
+            nodeList.get((2*tier)+1).setImageResource(image_Resources_Tens.get(tens_counter - 1));
         }
-        while (num >= level) {
-            one_counter++;
-            num = num - level;
+        if(num >= level) {
+            while (num >= level) {
+                one_counter++;
+                num = num - level;
+            }
+            nodeList.get(2 * tier).setVisibility(View.VISIBLE);
+            nodeList.get(2 * tier).setImageResource(image_Resources_Ones.get(one_counter - 1));
         }
-        nodeList.get(0).setVisibility(View.VISIBLE);
-        nodeList.get(0).setImageResource(image_Resources_Ones.get(one_counter - 1));
         return num;
     }
 

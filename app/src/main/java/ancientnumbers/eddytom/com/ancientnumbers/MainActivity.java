@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
     ImageView er311, er312,er313,er321,er322,er323,er331,er332,er333;
     ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
-    ImageView bab1,bab10;
+    ImageView bab1,bab10,bab1_2,bab10_2,bab1_3,bab10_3,bab1_4,bab10_4;
     ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList, bab_nodelist;
     EditText input;
     TextView civ_detail;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Egyptian_Converter e;
     Mayan_Converter m;
     Bab_Converter b;
-    boolean mayan_on = true, roman_on = false, egypt_on = false, bab_on = false;
+    int current_conv = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,9 +282,21 @@ public class MainActivity extends AppCompatActivity {
 
         bab1 = findViewById(R.id.bab_one);
         bab10 = findViewById(R.id.bab_tens);
+        bab1_2 = findViewById(R.id.bab_ones2);
+        bab10_2 = findViewById(R.id.bab_tens2);
+        bab1_3 = findViewById(R.id.bab_ones3);
+        bab10_3 = findViewById(R.id.bab_tens3);
+        bab1_4 = findViewById(R.id.bab_ones4);
+        bab10_4 = findViewById(R.id.bab_tens4);
         bab_nodelist =  new ArrayList<>();
         bab_nodelist.add(bab1);
         bab_nodelist.add(bab10);
+        bab_nodelist.add(bab1_2);
+        bab_nodelist.add(bab10_2);
+        bab_nodelist.add(bab1_3);
+        bab_nodelist.add(bab10_3);
+        bab_nodelist.add(bab1_4);
+        bab_nodelist.add(bab10_4);
 
         //Converter Creation
         m = new Mayan_Converter(mayan_nodeList, mayan_zeroList);
@@ -314,39 +326,39 @@ public class MainActivity extends AppCompatActivity {
                     egypt_nodeList.get(i).setVisibility(View.GONE);
                 }
                 for (int i = 0; i < bab_nodelist.size(); i++) {
-                    bab_nodelist.get(i).setVisibility(View.GONE);
+                    bab_nodelist.get(i).setVisibility(View.INVISIBLE);
                 }
 
                 //Logic gates to chose the converter and set maximums for them.
-                if (mayan_on) {
+                if (current_conv == 1) {
                     if (num < 160000) {
                         m.setNum(num);
                     } else {
-                        Toast.makeText(MainActivity.this, "Please enter a number within 1-159999.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Please enter a number within 0-159999.", Toast.LENGTH_LONG).show();
                     }
                 }
 
-                if (roman_on) {
-                    if (num <= 1000) {
+                if (current_conv == 2) {
+                    if (num <= 1000 && num != 0) {
                         r.conv_num(num);
                     } else {
                         Toast.makeText(MainActivity.this, "Please enter a number within 1-1000.", Toast.LENGTH_LONG).show();
                     }
                 }
 
-                if (egypt_on) {
-                    if (num <= 9999) {
+                if (current_conv == 3) {
+                    if (num <= 9999 && num != 0) {
                         e.setNum(num);
                     } else {
                         Toast.makeText(MainActivity.this, "Please enter a number within 1-9999.", Toast.LENGTH_LONG).show();
                     }
                 }
 
-                if (bab_on) {
-                    if (num <= 59) {
+                if (current_conv == 4) {
+                    if (num <= 12959999 && num != 0) {
                         b.setNum(num);
                     } else {
-                        Toast.makeText(MainActivity.this, "Please enter a number within 1-59.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Please enter a number within 1-12959999.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -357,22 +369,22 @@ public class MainActivity extends AppCompatActivity {
             //Probably should limit to one click or do a warning.
             public void onClick(View view) {
                 Intent browInt;
-                if (mayan_on) {
+                if (current_conv == 1) {
                     browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://courses.lumenlearning.com/waymakermath4libarts/chapter/the-mayan-numeral-system/"));
                     startActivity(browInt);
                 }
 
-                if (roman_on) {
+                if (current_conv == 2) {
                     browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.britannica.com/topic/Roman-numeral"));
                     startActivity(browInt);
                 }
 
-                if(egypt_on){
+                if(current_conv == 3){
                     browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discoveringegypt.com/egyptian-hieroglyphic-writing/egyptian-mathematics-numbers-hieroglyphs/"));
                     startActivity(browInt);
                 }
 
-                if(bab_on){
+                if(current_conv == 4){
                     browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www-history.mcs.st-and.ac.uk/HistTopics/Babylonian_numerals.html"));
                     startActivity(browInt);
                 }
@@ -396,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_mayan) {
-            if (!mayan_on){
+            if (current_conv != 1){
                 Toast.makeText(MainActivity.this, "Switching to Mayan Converter", Toast.LENGTH_LONG).show();
             output_mayan.setVisibility(View.VISIBLE);
             m1space.setVisibility(View.VISIBLE);
@@ -404,16 +416,13 @@ public class MainActivity extends AppCompatActivity {
             output_roman.setVisibility(View.GONE);
             output_egypt.setVisibility(View.GONE);
             output_bab.setVisibility(View.GONE);
-            mayan_on = true;
-            roman_on = false;
-            egypt_on = false;
-            bab_on = false;
+            current_conv = 1;
             //Fact check needed
             civ_detail.setText("Mayan Civilization: 1800 BC - 1697 AD");
          }
         }
         if (id == R.id.action_settings_roman) {
-            if(!roman_on) {
+            if(current_conv != 2) {
                 Toast.makeText(MainActivity.this, "Switching to Roman Converter", Toast.LENGTH_LONG).show();
                 output_roman.setVisibility(View.VISIBLE);
                 output_mayan.setVisibility(View.GONE);
@@ -421,17 +430,14 @@ public class MainActivity extends AppCompatActivity {
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
                 output_bab.setVisibility(View.GONE);
-                mayan_on = false;
-                egypt_on = false;
-                roman_on = true;
-                bab_on = false;
+                current_conv = 2;
                 //Fact check needed
                 civ_detail.setText("Roman Empire: 753 BC - 1453 AD");
             }
         }
 
         if (id == R.id.action_settings_egypt){
-            if(!egypt_on){
+            if(current_conv != 3){
                 Toast.makeText(MainActivity.this, "Switching to Egyptian Converter", Toast.LENGTH_LONG).show();
                 output_roman.setVisibility(View.GONE);
                 output_mayan.setVisibility(View.GONE);
@@ -439,17 +445,14 @@ public class MainActivity extends AppCompatActivity {
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
                 output_bab.setVisibility(View.GONE);
-                mayan_on = false;
-                bab_on = false;
-                egypt_on = true;
-                roman_on = false;
+                current_conv = 3;
                 //Fact check needed
                 civ_detail.setText("Ancient Egypt: 3100 BC - 30 BC");
             }
         }
 
         if (id == R.id.action_settings_bab){
-            if(!bab_on){
+            if(current_conv != 4){
                 Toast.makeText(MainActivity.this, "Switching to Babylonian Converter", Toast.LENGTH_LONG).show();
                 output_bab.setVisibility(View.VISIBLE);
                 output_roman.setVisibility(View.GONE);
@@ -457,10 +460,7 @@ public class MainActivity extends AppCompatActivity {
                 output_egypt.setVisibility(View.GONE);
                 m1space.setVisibility(View.GONE);
                 m2space.setVisibility(View.GONE);
-                bab_on = true;
-                mayan_on = false;
-                egypt_on = false;
-                roman_on = false;
+                current_conv = 4;
                 //Fact check needed
                 civ_detail.setText("Ancient Babylonia: 1895 BC - 539 BC");
             }
