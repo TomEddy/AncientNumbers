@@ -10,6 +10,7 @@
 
 
     <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:orientation="horizontal">
@@ -111,7 +112,7 @@
 
             <ImageView
                 android:id="@+id/rfourZero"
-                style="@style/MayZeroImage"/>
+                style="@style/MayZeroImage" />
 
             <View style="@style/Divider" />
 
@@ -133,7 +134,7 @@
 
             <ImageView
                 android:id="@+id/rthreeZero"
-                style="@style/MayZeroImage"/>
+                style="@style/MayZeroImage" />
 
             <View style="@style/Divider" />
 
@@ -155,7 +156,7 @@
 
             <ImageView
                 android:id="@+id/rtwoZero"
-                style="@style/MayZeroImage"/>
+                style="@style/MayZeroImage" />
 
             <View style="@style/Divider" />
 
@@ -177,8 +178,9 @@
 
             <ImageView
                 android:id="@+id/roneZero"
-                style="@style/MayZeroImage"/>
+                style="@style/MayZeroImage" />
         </LinearLayout>
+
         <Space
             android:id="@+id/space_two_mayan"
             android:layout_width="wrap_content"
@@ -520,11 +522,11 @@
 
             <ImageView
                 android:id="@+id/bab_tens3"
-                style="@style/BabImage"  />
+                style="@style/BabImage" />
 
             <ImageView
                 android:id="@+id/bab_ones3"
-                style="@style/BabImage"  />
+                style="@style/BabImage" />
 
             <View style="@style/DividerVertical" />
 
@@ -540,13 +542,68 @@
 
             <ImageView
                 android:id="@+id/bab_tens"
-                style="@style/BabImage"  />
+                style="@style/BabImage" />
 
             <ImageView
                 android:id="@+id/bab_one"
-                style="@style/BabImage"  />
+                style="@style/BabImage" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/helpLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TableRow
+            android:id="@+id/exp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:gravity="center_vertical|center_horizontal">
+
+            <TextView
+                android:id="@+id/expl_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="TextView"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="BACK"
+                android:textColor="@android:color/background_light" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="NEXT"
+                android:textColor="@android:color/background_light" />
+        </TableRow>
+
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>

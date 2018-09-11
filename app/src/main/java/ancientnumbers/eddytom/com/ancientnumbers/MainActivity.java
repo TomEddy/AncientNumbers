@@ -21,10 +21,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout output_egypt, output_bab, output_mayan_v2;
+    LinearLayout output_egypt, output_bab, output_mayan_v2,main_lay;
+    TableLayout help_lay;
     TextView output_roman;
     Space m1space, m2space;
-    Button convert, help;
+    Button convert, help, back, next;
     ImageView may11,may12,may13,may14, may21,may22,may23,may24,may31,may32,may33,may34,may41,may42,may43,may44;
     ImageView er11, er12,er13,er21,er22,er23,er31,er32,er33;
     ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
@@ -32,13 +33,15 @@ public class MainActivity extends AppCompatActivity {
     ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
     ImageView bab1,bab10,bab1_2,bab10_2,bab1_3,bab10_3,bab1_4,bab10_4;
     ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList, bab_nodelist;
+    String[] mayan_help = new String[3];
     EditText input;
-    TextView civ_detail;
+    TextView civ_detail, help_view;
     Roman_Converter r;
     Egyptian_Converter e;
     Mayan_Converter_v2 m;
     Bab_Converter b;
     int current_conv = 1;
+    int help_counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,23 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Creating instances of all components.
+        //Main Page and Help Screen
+        main_lay = findViewById(R.id.main);
+        help_lay = findViewById(R.id.helpLay);
         //Misc Components
         input = findViewById(R.id.input);
         civ_detail = findViewById(R.id.group_detail);
         convert = findViewById(R.id.convert);
         help = findViewById(R.id.help);
+
+
+        //Creating help Strings
+        back = findViewById(R.id.back);
+        next = findViewById(R.id.next);
+        help_view = findViewById(R.id.expl_view);
+        mayan_help[0] = "Each dot represents one. Each bar represents five.";
+        mayan_help[1] = "Their system is base twenty.";
+        mayan_help[2] = "Something Relevant";
 
         //Outputs
         //Mayan Output
@@ -272,15 +287,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //Help button that initiates help overlay.
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             //Probably should limit to one click or do a warning.
             public void onClick(View view) {
                 Intent browInt;
                 if (current_conv == 1) {
-                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://courses.lumenlearning.com/waymakermath4libarts/chapter/the-mayan-numeral-system/"));
-                    startActivity(browInt);
+                    //browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://courses.lumenlearning.com/waymakermath4libarts/chapter/the-mayan-numeral-system/"));
+                    //startActivity(browInt);
+                    main_lay.setVisibility(View.GONE);
+                    help_lay.setVisibility(View.VISIBLE);
+                    help_view.setText(mayan_help[0]);
                 }
 
                 if (current_conv == 2) {
@@ -299,6 +317,66 @@ public class MainActivity extends AppCompatActivity {
                 }
                 }
             });
+
+        //Back button press inside help layout.
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //Probably should limit to one click or do a warning.
+            public void onClick(View view) {
+                if (current_conv == 1) {
+                   if(help_counter > 0){
+                       help_counter--;
+                       help_view.setText(mayan_help[help_counter]);
+                       next.setText("NEXT");
+                   }
+                }
+
+                if (current_conv == 2) {
+
+                }
+
+                if(current_conv == 3){
+
+                }
+
+                if(current_conv == 4){
+
+                }
+            }
+        });
+        //Next button press inside help layout.
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //Probably should limit to one click or do a warning.
+            public void onClick(View view) {
+                if (current_conv == 1) {
+                    if(help_counter == mayan_help.length-2){
+                        next.setText("FINISH");
+                    }
+                    if(help_counter < mayan_help.length-1){
+                        help_counter++;
+                        help_view.setText(mayan_help[help_counter]);
+                    }else{
+                        help_counter = 0;
+                        next.setText("NEXT");
+                        main_lay.setVisibility(View.VISIBLE);
+                        help_lay.setVisibility(View.GONE);
+                    }
+                }
+
+                if (current_conv == 2) {
+
+                }
+
+                if(current_conv == 3){
+
+                }
+
+                if(current_conv == 4){
+
+                }
+            }
+        });
     }
 
     @Override
@@ -315,6 +393,10 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        main_lay.setVisibility(View.VISIBLE);
+        help_lay.setVisibility(View.GONE);
+        help_counter = 0;
+        next.setText("NEXT");
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_mayan) {
             if (current_conv != 1){
