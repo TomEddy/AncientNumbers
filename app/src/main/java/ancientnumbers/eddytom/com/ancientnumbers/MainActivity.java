@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
     ImageView bab1,bab10,bab1_2,bab10_2,bab1_3,bab10_3,bab1_4,bab10_4;
     ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList, bab_nodelist;
-    String[] mayan_help = new String[3];
+    String[] mayan_help = new String[6];
+    String[] roman_help = new String[3];
+    String[] bab_help = new String[3];
+    String[] egypt_help = new String[3];
     EditText input;
     TextView civ_detail, help_view;
     Roman_Converter r;
@@ -62,12 +65,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Creating help Strings
+        //Place this in its own class. Make a array of string[] and pass back reflecting current_conv
+        // Create webrowser button usable on final note slide taking user to further help online.
         back = findViewById(R.id.back);
         next = findViewById(R.id.next);
         help_view = findViewById(R.id.expl_view);
-        mayan_help[0] = "Each dot represents one. Each bar represents five.";
-        mayan_help[1] = "Their system is base twenty.";
-        mayan_help[2] = "Something Relevant";
+        mayan_help[0] = "Each dot represents one. Each bar represents five. Each empty shell represents zero.";
+        mayan_help[1] = "Their system is base twenty. Meaning the place value is dictated by powers of twenty.";
+        mayan_help[2] = "For numbers one through nineteen they are simply represented with the corresponding bars and dots.";
+        mayan_help[3] = "Once a number exceeds twenty bars and dots are placed in higher categories representing the incrementing powers of twenty.";
+        mayan_help[4] = "For example with a number between 20 and 399, bars and dots representing 100 and 20 respectively make up the majority of the number. The remainder will be 19 or less by construction. ";
+        mayan_help[5] = "The collection of dots and bars representing higher powers of twenty are always placed above the rest.";
+
+        bab_help[0] = "One through nine are represented with stacked triangles. Tens (ten,twenty, thirty up to fifty) are represented by sideways larger triangles.";
+        bab_help[1] = "Their system is base sixty. Meaning the place value is dictated by powers of sixty.";
+        bab_help[2] = "Once a number exceeds sixty triangles are placed in categories further to the left representing the incrementing powers of sixty.";
+
+        egypt_help[0] = "The ancient egyptian numeral system is much closer to what we are used to today.";
+        egypt_help[1] = "Their system is base ten identical to our own. Ones, tens, hundreds and so on each have a corresponding symbol.";
+        egypt_help[2] = "A number is broken down into its powers of ten and constructed with the highest value symbols on the left.";
+
+        roman_help[0] = "Ancient romans used roman numerals. I being one. II being two.";
+        roman_help[1] = "Their system horrible.";
+        roman_help[2] = "Something Relevant";
 
         //Outputs
         //Mayan Output
@@ -292,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             //Probably should limit to one click or do a warning.
             public void onClick(View view) {
-                Intent browInt;
+                //Intent browInt;
                 if (current_conv == 1) {
                     //browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://courses.lumenlearning.com/waymakermath4libarts/chapter/the-mayan-numeral-system/"));
                     //startActivity(browInt);
@@ -302,18 +322,27 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (current_conv == 2) {
-                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.britannica.com/topic/Roman-numeral"));
-                    startActivity(browInt);
+                    main_lay.setVisibility(View.GONE);
+                    help_lay.setVisibility(View.VISIBLE);
+                    help_view.setText(roman_help[0]);
+                   // browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.britannica.com/topic/Roman-numeral"));
+                   // startActivity(browInt);
                 }
 
                 if(current_conv == 3){
-                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discoveringegypt.com/egyptian-hieroglyphic-writing/egyptian-mathematics-numbers-hieroglyphs/"));
-                    startActivity(browInt);
+                    main_lay.setVisibility(View.GONE);
+                    help_lay.setVisibility(View.VISIBLE);
+                    help_view.setText(egypt_help[0]);
+                   // browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discoveringegypt.com/egyptian-hieroglyphic-writing/egyptian-mathematics-numbers-hieroglyphs/"));
+                    //startActivity(browInt);
                 }
 
                 if(current_conv == 4){
-                    browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www-history.mcs.st-and.ac.uk/HistTopics/Babylonian_numerals.html"));
-                    startActivity(browInt);
+                    main_lay.setVisibility(View.GONE);
+                    help_lay.setVisibility(View.VISIBLE);
+                    help_view.setText(bab_help[0]);
+                   // browInt = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www-history.mcs.st-and.ac.uk/HistTopics/Babylonian_numerals.html"));
+                    //startActivity(browInt);
                 }
                 }
             });
@@ -323,24 +352,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             //Probably should limit to one click or do a warning.
             public void onClick(View view) {
-                if (current_conv == 1) {
-                   if(help_counter > 0){
-                       help_counter--;
-                       help_view.setText(mayan_help[help_counter]);
-                       next.setText("NEXT");
-                   }
-                }
-
-                if (current_conv == 2) {
-
-                }
-
-                if(current_conv == 3){
-
-                }
-
-                if(current_conv == 4){
-
+                if (help_counter > 0) {
+                    help_counter--;
+                    next.setText("NEXT");
+                    if (current_conv == 1) {
+                        help_view.setText(mayan_help[help_counter]);
+                    }
+                    if (current_conv == 2) {
+                        help_view.setText(roman_help[help_counter]);
+                    }
+                    if (current_conv == 3) {
+                        help_view.setText(egypt_help[help_counter]);
+                    }
+                    if (current_conv == 4) {
+                        help_view.setText(bab_help[help_counter]);
+                    }
                 }
             }
         });
@@ -349,31 +375,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             //Probably should limit to one click or do a warning.
             public void onClick(View view) {
+                int length = 0;
+                String[] current = null;
                 if (current_conv == 1) {
-                    if(help_counter == mayan_help.length-2){
-                        next.setText("FINISH");
-                    }
-                    if(help_counter < mayan_help.length-1){
-                        help_counter++;
-                        help_view.setText(mayan_help[help_counter]);
-                    }else{
-                        help_counter = 0;
-                        next.setText("NEXT");
-                        main_lay.setVisibility(View.VISIBLE);
-                        help_lay.setVisibility(View.GONE);
-                    }
+                    length = mayan_help.length;
+                    current = mayan_help;
                 }
 
                 if (current_conv == 2) {
-
+                    length = roman_help.length;
+                    current = roman_help;
                 }
 
                 if(current_conv == 3){
-
+                    length = egypt_help.length;
+                    current = egypt_help;
                 }
 
                 if(current_conv == 4){
+                    length = bab_help.length;
+                    current = bab_help;
+                }
 
+                if(help_counter == length-2){
+                    next.setText("FINISH");
+                }
+                if(help_counter < length-1){
+                    help_counter++;
+                    help_view.setText(current[help_counter]);
+                }else{
+                    help_counter = 0;
+                    next.setText("NEXT");
+                    main_lay.setVisibility(View.VISIBLE);
+                    help_lay.setVisibility(View.GONE);
                 }
             }
         });
