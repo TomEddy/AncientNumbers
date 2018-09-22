@@ -13,7 +13,13 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -96,89 +102,109 @@
 
             <ImageView
                 android:id="@+id/may_4_4"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_4_3"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_4_2"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_4_1"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/rfourZero"
-                style="@style/MayZeroImage" />
+                style="@style/MayZeroImage"
+                android:contentDescription="@string/todo" />
 
             <View style="@style/Divider" />
 
             <ImageView
                 android:id="@+id/may_3_4"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_3_3"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_3_2"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_3_1"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/rthreeZero"
-                style="@style/MayZeroImage" />
+                style="@style/MayZeroImage"
+                android:contentDescription="@string/todo" />
 
             <View style="@style/Divider" />
 
             <ImageView
                 android:id="@+id/may_2_4"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_2_3"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_2_2"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_2_1"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/rtwoZero"
-                style="@style/MayZeroImage" />
+                style="@style/MayZeroImage"
+                android:contentDescription="@string/todo" />
 
             <View style="@style/Divider" />
 
             <ImageView
                 android:id="@+id/may_1_4"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_1_3"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_1_2"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/may_1_1"
-                style="@style/MayImage" />
+                style="@style/MayImage"
+                android:contentDescription="@string/todo" />
 
             <ImageView
                 android:id="@+id/roneZero"
-                style="@style/MayZeroImage" />
+                style="@style/MayZeroImage"
+                android:contentDescription="@string/todo" />
         </LinearLayout>
 
         <Space
@@ -206,7 +232,8 @@
             android:orientation="horizontal"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:baselineAligned="false">
 
             <TableLayout
                 android:id="@+id/thous"
@@ -223,17 +250,20 @@
                     <ImageView
                         android:id="@+id/eg4_r11"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r12"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r13"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -244,17 +274,20 @@
                     <ImageView
                         android:id="@+id/eg4_r21"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r22"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r23"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -265,17 +298,20 @@
                     <ImageView
                         android:id="@+id/eg4_r31"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r32"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg4_r33"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_thous" />
+                        app:srcCompat="@drawable/egypt_nums_thous"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
             </TableLayout>
@@ -295,17 +331,20 @@
                     <ImageView
                         android:id="@+id/eg3_r11"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r12"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r13"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -316,17 +355,20 @@
                     <ImageView
                         android:id="@+id/eg3_r21"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r22"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r23"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -337,17 +379,20 @@
                     <ImageView
                         android:id="@+id/eg3_r31"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r32"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg3_r33"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_hund" />
+                        app:srcCompat="@drawable/egypt_nums_hund"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
             </TableLayout>
@@ -367,17 +412,20 @@
                     <ImageView
                         android:id="@+id/eg2_r11"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo" />
 
                     <ImageView
                         android:id="@+id/eg2_r12"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg2_r13"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -388,17 +436,20 @@
                     <ImageView
                         android:id="@+id/eg2_r21"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg2_r22"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg2_r23"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -409,17 +460,20 @@
                     <ImageView
                         android:id="@+id/eg2_r31"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg2_r32"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg2_r33"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_ten" />
+                        app:srcCompat="@drawable/egypt_nums_ten"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
             </TableLayout>
@@ -440,17 +494,20 @@
                     <ImageView
                         android:id="@+id/eg_r11"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r12"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r13"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -462,17 +519,20 @@
                     <ImageView
                         android:id="@+id/eg_r21"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r22"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r23"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
                 <TableRow
@@ -484,17 +544,20 @@
                     <ImageView
                         android:id="@+id/eg_r31"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r32"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
 
                     <ImageView
                         android:id="@+id/eg_r33"
                         style="@style/EgTmg"
-                        app:srcCompat="@drawable/egypt_nums_one" />
+                        app:srcCompat="@drawable/egypt_nums_one"
+                        android:contentDescription="@string/todo"/>
                 </TableRow>
 
             </TableLayout>
@@ -512,41 +575,49 @@
 
             <ImageView
                 android:id="@+id/bab_tens4"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <ImageView
                 android:id="@+id/bab_ones4"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <View style="@style/DividerVertical" />
 
             <ImageView
                 android:id="@+id/bab_tens3"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <ImageView
                 android:id="@+id/bab_ones3"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <View style="@style/DividerVertical" />
 
             <ImageView
                 android:id="@+id/bab_tens2"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <ImageView
                 android:id="@+id/bab_ones2"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <View style="@style/DividerVertical" />
 
             <ImageView
                 android:id="@+id/bab_tens"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
             <ImageView
                 android:id="@+id/bab_one"
-                style="@style/BabImage" />
+                style="@style/BabImage"
+                android:contentDescription="@string/todo"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -556,7 +627,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:id="@+id/exp"
@@ -570,7 +645,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp" />
         </TableRow>
@@ -589,7 +664,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
-                android:text="BACK"
+                android:text="@string/back"
                 android:textColor="@android:color/background_light" />
 
             <Button
@@ -600,7 +675,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_weight="1"
                 android:background="@color/colorPrimaryDark"
-                android:text="NEXT"
+                android:text="@string/next"
                 android:textColor="@android:color/background_light" />
         </TableRow>
 

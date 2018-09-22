@@ -1,9 +1,13 @@
 package ancientnumbers.eddytom.com.ancientnumbers;
 
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-public class Roman_Converter {
-    TextView output_roman;
+public class Roman_Converter extends AppCompatActivity {
+    private final TextView output_roman;
+    public Roman_Converter(){
+        output_roman = null;
+    }
     Roman_Converter(TextView out){
         output_roman = out;
     }

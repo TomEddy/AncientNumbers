@@ -3,14 +3,19 @@ package ancientnumbers.eddytom.com.ancientnumbers;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-
 import java.util.ArrayList;
 
 public class Bab_Converter extends AppCompatActivity {
 
-    ArrayList<ImageView> nodeList;
-    ArrayList<Integer> image_Resources_Ones;
-    ArrayList<Integer> image_Resources_Tens;
+    private final ArrayList<ImageView> nodeList;
+    private final ArrayList<Integer> image_Resources_Ones;
+    private final ArrayList<Integer> image_Resources_Tens;
+
+    public Bab_Converter(){
+        nodeList = null;
+        image_Resources_Ones = null;
+        image_Resources_Tens = null;
+    }
 
     Bab_Converter(ArrayList<ImageView> n) {
         nodeList = n;

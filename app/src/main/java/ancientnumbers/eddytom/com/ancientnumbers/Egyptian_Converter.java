@@ -8,15 +8,18 @@ import java.util.ArrayList;
 
 public class Egyptian_Converter extends AppCompatActivity {
 
-    ArrayList<ImageView> nodeList;
+    private final ArrayList<ImageView> nodeList;
 
+    public Egyptian_Converter(){
+        nodeList = null;
+    }
     Egyptian_Converter(ArrayList<ImageView> n){
         nodeList = n;
     }
     private int tier(int num, int tier) {
         //boolean lineBalance = false;
         int level = 1;
-        int counter = 0;
+        int counter;
         for (int i = 0; i < tier; i++) {
             level = level * 10;
         }
@@ -26,17 +29,9 @@ public class Egyptian_Converter extends AppCompatActivity {
                 nodeList.get(counter).setVisibility(View.VISIBLE);
                 counter = counter + 1;
                 num = num - level;
-            } /*else if (!lineBalance && counter!= 3 && counter !=6) {
-                nodeList.get(counter).setVisibility(View.GONE);
-                counter = counter + 1;
-                if (counter == 4 || counter == 6) {
-                    lineBalance = true;
-                }
-
-            }*/ else {
+            } else {
                 nodeList.get(counter).setVisibility(View.INVISIBLE);
                 counter = counter + 1;
-                //lineBalance = true;
             }
         }
         return num;

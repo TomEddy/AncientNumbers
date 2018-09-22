@@ -8,10 +8,15 @@ import java.util.ArrayList;
 
 public class Mayan_Converter_v2 extends AppCompatActivity {
 
-    ArrayList<ImageView> nodeList;
-    ArrayList<ImageView> zeroList;
-    ArrayList<Integer> image_Resources;
+    private final ArrayList<ImageView> nodeList;
+    private final ArrayList<ImageView> zeroList;
+    private final ArrayList<Integer> image_Resources;
 
+    public Mayan_Converter_v2(){
+        nodeList= null;
+        zeroList = null;
+        image_Resources = null;
+    }
     Mayan_Converter_v2(ArrayList<ImageView> n,ArrayList<ImageView> nn){
         nodeList = n;
         zeroList = nn;
@@ -36,7 +41,7 @@ public class Mayan_Converter_v2 extends AppCompatActivity {
     private int tier(int num, int tier){
         boolean done = false;
         int level = 5;
-        int counter = 0;
+        int counter;
         for(int i=0; i< tier; i++){
             level = level*20;
         }

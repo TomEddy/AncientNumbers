@@ -19,8 +19,8 @@
         android:title="@string/action_settings_mayan"
         app:showAsAction="never" />
     <item
-    android:id="@+id/action_settings_roman"
-    android:orderInCategory="100"
-    android:title="@string/action_settings_roman"
-    app:showAsAction="never" />
+        android:id="@+id/action_settings_roman"
+        android:orderInCategory="100"
+        android:title="@string/action_settings_roman"
+        app:showAsAction="never" />
 </menu>

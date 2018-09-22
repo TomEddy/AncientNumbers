@@ -20,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+        <activity android:name="ancientnumbers.eddytom.com.ancientnumbers.Bab_Converter" />
+        <activity android:name="ancientnumbers.eddytom.com.ancientnumbers.Egyptian_Converter" />
+        <activity android:name="ancientnumbers.eddytom.com.ancientnumbers.Mayan_Converter_v2" />
+        <activity android:name="ancientnumbers.eddytom.com.ancientnumbers.Roman_Converter" />
+
     </application>
 
 </manifest>

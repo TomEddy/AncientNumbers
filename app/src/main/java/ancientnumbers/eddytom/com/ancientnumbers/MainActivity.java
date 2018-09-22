@@ -1,7 +1,5 @@
 package ancientnumbers.eddytom.com.ancientnumbers;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,30 +19,32 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout output_egypt, output_bab, output_mayan_v2,main_lay;
-    TableLayout help_lay;
-    TextView output_roman;
-    Space m1space, m2space;
-    Button convert, help, back, next;
-    ImageView may11,may12,may13,may14, may21,may22,may23,may24,may31,may32,may33,may34,may41,may42,may43,may44;
-    ImageView er11, er12,er13,er21,er22,er23,er31,er32,er33;
-    ImageView er211, er212,er213,er221,er222,er223,er231,er232,er233;
-    ImageView er311, er312,er313,er321,er322,er323,er331,er332,er333;
-    ImageView er411, er412,er413,er421,er422,er423,er431,er432,er433;
-    ImageView bab1,bab10,bab1_2,bab10_2,bab1_3,bab10_3,bab1_4,bab10_4;
-    ArrayList<ImageView> mayan_nodeList, mayan_zeroList, egypt_nodeList, bab_nodelist;
-    String[] mayan_help = new String[6];
-    String[] roman_help = new String[3];
-    String[] bab_help = new String[3];
-    String[] egypt_help = new String[3];
-    EditText input;
-    TextView civ_detail, help_view;
-    Roman_Converter r;
-    Egyptian_Converter e;
-    Mayan_Converter_v2 m;
-    Bab_Converter b;
-    int current_conv = 1;
-    int help_counter = 0;
+    private LinearLayout output_egypt;
+    private LinearLayout output_bab;
+    private LinearLayout output_mayan_v2;
+    private LinearLayout main_lay;
+    private TableLayout help_lay;
+    private TextView output_roman;
+    private Space m1space;
+    private Space m2space;
+    private Button next;
+    private ArrayList<ImageView> mayan_nodeList;
+    private ArrayList<ImageView> mayan_zeroList;
+    private ArrayList<ImageView> egypt_nodeList;
+    private ArrayList<ImageView> bab_nodelist;
+    private final String[] mayan_help = new String[6];
+    private final String[] roman_help = new String[6];
+    private final String[] bab_help = new String[3];
+    private final String[] egypt_help = new String[3];
+    private EditText input;
+    private TextView civ_detail;
+    private TextView help_view;
+    private Roman_Converter r;
+    private Egyptian_Converter e;
+    private Mayan_Converter_v2 m;
+    private Bab_Converter b;
+    private int current_conv = 1;
+    private int help_counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,187 +60,24 @@ public class MainActivity extends AppCompatActivity {
         //Misc Components
         input = findViewById(R.id.input);
         civ_detail = findViewById(R.id.group_detail);
-        convert = findViewById(R.id.convert);
-        help = findViewById(R.id.help);
-
+        Button convert = findViewById(R.id.convert);
+        Button help = findViewById(R.id.help);
 
         //Creating help Strings
-        //Place this in its own class. Make a array of string[] and pass back reflecting current_conv
         // Create webrowser button usable on final note slide taking user to further help online.
-        back = findViewById(R.id.back);
+        Button back = findViewById(R.id.back);
         next = findViewById(R.id.next);
-        help_view = findViewById(R.id.expl_view);
-        mayan_help[0] = "Each dot represents one. Each bar represents five. Each empty shell represents zero.";
-        mayan_help[1] = "Their system is base twenty. Meaning the place value is dictated by powers of twenty.";
-        mayan_help[2] = "For numbers one through nineteen they are simply represented with the corresponding bars and dots.";
-        mayan_help[3] = "Once a number exceeds twenty bars and dots are placed in higher categories representing the incrementing powers of twenty.";
-        mayan_help[4] = "For example with a number between 20 and 399, bars and dots representing 100 and 20 respectively make up the majority of the number. The remainder will be 19 or less by construction. ";
-        mayan_help[5] = "The collection of dots and bars representing higher powers of twenty are always placed above the rest.";
-
-        bab_help[0] = "One through nine are represented with stacked triangles. Tens (ten,twenty, thirty up to fifty) are represented by sideways larger triangles.";
-        bab_help[1] = "Their system is base sixty. Meaning the place value is dictated by powers of sixty.";
-        bab_help[2] = "Once a number exceeds sixty triangles are placed in categories further to the left representing the incrementing powers of sixty.";
-
-        egypt_help[0] = "The ancient egyptian numeral system is much closer to what we are used to today.";
-        egypt_help[1] = "Their system is base ten identical to our own. Ones, tens, hundreds and so on each have a corresponding symbol.";
-        egypt_help[2] = "A number is broken down into its powers of ten and constructed with the highest value symbols on the left.";
-
-        roman_help[0] = "Ancient romans used roman numerals. I being one. II being two.";
-        roman_help[1] = "Their system horrible.";
-        roman_help[2] = "Something Relevant";
+        helpComments();
 
         //Outputs
         //Mayan Output
-        output_mayan_v2 = findViewById(R.id.output_mayan_v2);
-        m1space = findViewById(R.id.space_one_mayan);
-        m2space = findViewById(R.id.space_two_mayan);
-
-        may11 = findViewById(R.id.may_1_1);
-        may12 = findViewById(R.id.may_1_2);
-        may13 = findViewById(R.id.may_1_3);
-        may14 = findViewById(R.id.may_1_4);
-        may21 = findViewById(R.id.may_2_1);
-        may22 = findViewById(R.id.may_2_2);
-        may23 = findViewById(R.id.may_2_3);
-        may24 = findViewById(R.id.may_2_4);
-        may31 = findViewById(R.id.may_3_1);
-        may32 = findViewById(R.id.may_3_2);
-        may33 = findViewById(R.id.may_3_3);
-        may34 = findViewById(R.id.may_3_4);
-        may41 = findViewById(R.id.may_4_1);
-        may42 = findViewById(R.id.may_4_2);
-        may43 = findViewById(R.id.may_4_3);
-        may44 = findViewById(R.id.may_4_4);
-        mayan_nodeList = new ArrayList<>();
-        mayan_nodeList.add(may11);
-        mayan_nodeList.add(may12);
-        mayan_nodeList.add(may13);
-        mayan_nodeList.add(may14);
-        mayan_nodeList.add(may21);
-        mayan_nodeList.add(may22);
-        mayan_nodeList.add(may23);
-        mayan_nodeList.add(may24);
-        mayan_nodeList.add(may31);
-        mayan_nodeList.add(may32);
-        mayan_nodeList.add(may33);
-        mayan_nodeList.add(may34);
-        mayan_nodeList.add(may41);
-        mayan_nodeList.add(may42);
-        mayan_nodeList.add(may43);
-        mayan_nodeList.add(may44);
-        ImageView r1 = findViewById(R.id.roneZero);
-        ImageView r2 = findViewById(R.id.rtwoZero);
-        ImageView r3 = findViewById(R.id.rthreeZero);
-        ImageView r4 = findViewById(R.id.rfourZero);
-        mayan_zeroList =  new ArrayList<>();
-        mayan_zeroList.add(r1);
-        mayan_zeroList.add(r2);
-        mayan_zeroList.add(r3);
-        mayan_zeroList.add(r4);
-
-
-
-
-
-
+        mayanSetup();
         //Roman Output
         output_roman = findViewById(R.id.output_roman);
         //Egyptian Output
-        output_egypt = findViewById(R.id.output_egypt);
-        er11 = findViewById(R.id.eg_r11);
-        er12 = findViewById(R.id.eg_r12);
-        er13 = findViewById(R.id.eg_r13);
-        er21 = findViewById(R.id.eg_r21);
-        er22 = findViewById(R.id.eg_r22);
-        er23 = findViewById(R.id.eg_r23);
-        er31 = findViewById(R.id.eg_r31);
-        er32 = findViewById(R.id.eg_r32);
-        er33 = findViewById(R.id.eg_r33);
-        er211 = findViewById(R.id.eg2_r11);
-        er212 = findViewById(R.id.eg2_r12);
-        er213 = findViewById(R.id.eg2_r13);
-        er221 = findViewById(R.id.eg2_r21);
-        er222 = findViewById(R.id.eg2_r22);
-        er223 = findViewById(R.id.eg2_r23);
-        er231 = findViewById(R.id.eg2_r31);
-        er232 = findViewById(R.id.eg2_r32);
-        er233 = findViewById(R.id.eg2_r33);
-        er311 = findViewById(R.id.eg3_r11);
-        er312 = findViewById(R.id.eg3_r12);
-        er313 = findViewById(R.id.eg3_r13);
-        er321 = findViewById(R.id.eg3_r21);
-        er322 = findViewById(R.id.eg3_r22);
-        er323 = findViewById(R.id.eg3_r23);
-        er331 = findViewById(R.id.eg3_r31);
-        er332 = findViewById(R.id.eg3_r32);
-        er333 = findViewById(R.id.eg3_r33);
-        er411 = findViewById(R.id.eg4_r11);
-        er412 = findViewById(R.id.eg4_r12);
-        er413 = findViewById(R.id.eg4_r13);
-        er421 = findViewById(R.id.eg4_r21);
-        er422 = findViewById(R.id.eg4_r22);
-        er423 = findViewById(R.id.eg4_r23);
-        er431 = findViewById(R.id.eg4_r31);
-        er432 = findViewById(R.id.eg4_r32);
-        er433 = findViewById(R.id.eg4_r33);
-        egypt_nodeList =  new ArrayList<>();
-        egypt_nodeList.add(er11);
-        egypt_nodeList.add(er12);
-        egypt_nodeList.add(er13);
-        egypt_nodeList.add(er21);
-        egypt_nodeList.add(er22);
-        egypt_nodeList.add(er23);
-        egypt_nodeList.add(er31);
-        egypt_nodeList.add(er32);
-        egypt_nodeList.add(er33);
-        egypt_nodeList.add(er211);
-        egypt_nodeList.add(er212);
-        egypt_nodeList.add(er213);
-        egypt_nodeList.add(er221);
-        egypt_nodeList.add(er222);
-        egypt_nodeList.add(er223);
-        egypt_nodeList.add(er231);
-        egypt_nodeList.add(er232);
-        egypt_nodeList.add(er233);
-        egypt_nodeList.add(er311);
-        egypt_nodeList.add(er312);
-        egypt_nodeList.add(er313);
-        egypt_nodeList.add(er321);
-        egypt_nodeList.add(er322);
-        egypt_nodeList.add(er323);
-        egypt_nodeList.add(er331);
-        egypt_nodeList.add(er332);
-        egypt_nodeList.add(er333);
-        egypt_nodeList.add(er411);
-        egypt_nodeList.add(er412);
-        egypt_nodeList.add(er413);
-        egypt_nodeList.add(er421);
-        egypt_nodeList.add(er422);
-        egypt_nodeList.add(er423);
-        egypt_nodeList.add(er431);
-        egypt_nodeList.add(er432);
-        egypt_nodeList.add(er433);
-
+        egyptianSetup();
         //Babylonian Output
-        output_bab = findViewById(R.id.output_bab);
-
-        bab1 = findViewById(R.id.bab_one);
-        bab10 = findViewById(R.id.bab_tens);
-        bab1_2 = findViewById(R.id.bab_ones2);
-        bab10_2 = findViewById(R.id.bab_tens2);
-        bab1_3 = findViewById(R.id.bab_ones3);
-        bab10_3 = findViewById(R.id.bab_tens3);
-        bab1_4 = findViewById(R.id.bab_ones4);
-        bab10_4 = findViewById(R.id.bab_tens4);
-        bab_nodelist =  new ArrayList<>();
-        bab_nodelist.add(bab1);
-        bab_nodelist.add(bab10);
-        bab_nodelist.add(bab1_2);
-        bab_nodelist.add(bab10_2);
-        bab_nodelist.add(bab1_3);
-        bab_nodelist.add(bab10_3);
-        bab_nodelist.add(bab1_4);
-        bab_nodelist.add(bab10_4);
+        babSetup();
 
         //Converter Creation
         m = new Mayan_Converter_v2(mayan_nodeList, mayan_zeroList);
@@ -354,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (help_counter > 0) {
                     help_counter--;
-                    next.setText("NEXT");
+                    next.setText(R.string.next);
                     if (current_conv == 1) {
                         help_view.setText(mayan_help[help_counter]);
                     }
@@ -398,14 +235,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(help_counter == length-2){
-                    next.setText("FINISH");
+                    next.setText(R.string.finish);
                 }
                 if(help_counter < length-1){
                     help_counter++;
-                    help_view.setText(current[help_counter]);
+                    if (current != null) {
+                        help_view.setText(current[help_counter]);
+                    }
                 }else{
                     help_counter = 0;
-                    next.setText("NEXT");
+                    next.setText(R.string.next);
                     main_lay.setVisibility(View.VISIBLE);
                     help_lay.setVisibility(View.GONE);
                 }
@@ -430,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         main_lay.setVisibility(View.VISIBLE);
         help_lay.setVisibility(View.GONE);
         help_counter = 0;
-        next.setText("NEXT");
+        next.setText(R.string.next);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_mayan) {
             if (current_conv != 1){
@@ -491,5 +330,176 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+    //Babylonian Output
+    private void babSetup(){
+        output_bab = findViewById(R.id.output_bab);
+        ImageView bab1 = findViewById(R.id.bab_one);
+        ImageView bab10 = findViewById(R.id.bab_tens);
+        ImageView bab1_2 = findViewById(R.id.bab_ones2);
+        ImageView bab10_2 = findViewById(R.id.bab_tens2);
+        ImageView bab1_3 = findViewById(R.id.bab_ones3);
+        ImageView bab10_3 = findViewById(R.id.bab_tens3);
+        ImageView bab1_4 = findViewById(R.id.bab_ones4);
+        ImageView bab10_4 = findViewById(R.id.bab_tens4);
+        bab_nodelist =  new ArrayList<>();
+        bab_nodelist.add(bab1);
+        bab_nodelist.add(bab10);
+        bab_nodelist.add(bab1_2);
+        bab_nodelist.add(bab10_2);
+        bab_nodelist.add(bab1_3);
+        bab_nodelist.add(bab10_3);
+        bab_nodelist.add(bab1_4);
+        bab_nodelist.add(bab10_4);
+    }
+    //Mayan Output
+    private void mayanSetup(){
+        output_mayan_v2 = findViewById(R.id.output_mayan_v2);
+        m1space = findViewById(R.id.space_one_mayan);
+        m2space = findViewById(R.id.space_two_mayan);
+
+        ImageView may11 = findViewById(R.id.may_1_1);
+        ImageView may12 = findViewById(R.id.may_1_2);
+        ImageView may13 = findViewById(R.id.may_1_3);
+        ImageView may14 = findViewById(R.id.may_1_4);
+        ImageView may21 = findViewById(R.id.may_2_1);
+        ImageView may22 = findViewById(R.id.may_2_2);
+        ImageView may23 = findViewById(R.id.may_2_3);
+        ImageView may24 = findViewById(R.id.may_2_4);
+        ImageView may31 = findViewById(R.id.may_3_1);
+        ImageView may32 = findViewById(R.id.may_3_2);
+        ImageView may33 = findViewById(R.id.may_3_3);
+        ImageView may34 = findViewById(R.id.may_3_4);
+        ImageView may41 = findViewById(R.id.may_4_1);
+        ImageView may42 = findViewById(R.id.may_4_2);
+        ImageView may43 = findViewById(R.id.may_4_3);
+        ImageView may44 = findViewById(R.id.may_4_4);
+        mayan_nodeList = new ArrayList<>();
+        mayan_nodeList.add(may11);
+        mayan_nodeList.add(may12);
+        mayan_nodeList.add(may13);
+        mayan_nodeList.add(may14);
+        mayan_nodeList.add(may21);
+        mayan_nodeList.add(may22);
+        mayan_nodeList.add(may23);
+        mayan_nodeList.add(may24);
+        mayan_nodeList.add(may31);
+        mayan_nodeList.add(may32);
+        mayan_nodeList.add(may33);
+        mayan_nodeList.add(may34);
+        mayan_nodeList.add(may41);
+        mayan_nodeList.add(may42);
+        mayan_nodeList.add(may43);
+        mayan_nodeList.add(may44);
+        ImageView r1 = findViewById(R.id.roneZero);
+        ImageView r2 = findViewById(R.id.rtwoZero);
+        ImageView r3 = findViewById(R.id.rthreeZero);
+        ImageView r4 = findViewById(R.id.rfourZero);
+        mayan_zeroList =  new ArrayList<>();
+        mayan_zeroList.add(r1);
+        mayan_zeroList.add(r2);
+        mayan_zeroList.add(r3);
+        mayan_zeroList.add(r4);
+    }
+    //Egyptian Output
+    private void egyptianSetup(){
+        output_egypt = findViewById(R.id.output_egypt);
+        ImageView er11 = findViewById(R.id.eg_r11);
+        ImageView er12 = findViewById(R.id.eg_r12);
+        ImageView er13 = findViewById(R.id.eg_r13);
+        ImageView er21 = findViewById(R.id.eg_r21);
+        ImageView er22 = findViewById(R.id.eg_r22);
+        ImageView er23 = findViewById(R.id.eg_r23);
+        ImageView er31 = findViewById(R.id.eg_r31);
+        ImageView er32 = findViewById(R.id.eg_r32);
+        ImageView er33 = findViewById(R.id.eg_r33);
+        ImageView er211 = findViewById(R.id.eg2_r11);
+        ImageView er212 = findViewById(R.id.eg2_r12);
+        ImageView er213 = findViewById(R.id.eg2_r13);
+        ImageView er221 = findViewById(R.id.eg2_r21);
+        ImageView er222 = findViewById(R.id.eg2_r22);
+        ImageView er223 = findViewById(R.id.eg2_r23);
+        ImageView er231 = findViewById(R.id.eg2_r31);
+        ImageView er232 = findViewById(R.id.eg2_r32);
+        ImageView er233 = findViewById(R.id.eg2_r33);
+        ImageView er311 = findViewById(R.id.eg3_r11);
+        ImageView er312 = findViewById(R.id.eg3_r12);
+        ImageView er313 = findViewById(R.id.eg3_r13);
+        ImageView er321 = findViewById(R.id.eg3_r21);
+        ImageView er322 = findViewById(R.id.eg3_r22);
+        ImageView er323 = findViewById(R.id.eg3_r23);
+        ImageView er331 = findViewById(R.id.eg3_r31);
+        ImageView er332 = findViewById(R.id.eg3_r32);
+        ImageView er333 = findViewById(R.id.eg3_r33);
+        ImageView er411 = findViewById(R.id.eg4_r11);
+        ImageView er412 = findViewById(R.id.eg4_r12);
+        ImageView er413 = findViewById(R.id.eg4_r13);
+        ImageView er421 = findViewById(R.id.eg4_r21);
+        ImageView er422 = findViewById(R.id.eg4_r22);
+        ImageView er423 = findViewById(R.id.eg4_r23);
+        ImageView er431 = findViewById(R.id.eg4_r31);
+        ImageView er432 = findViewById(R.id.eg4_r32);
+        ImageView er433 = findViewById(R.id.eg4_r33);
+        egypt_nodeList =  new ArrayList<>();
+        egypt_nodeList.add(er11);
+        egypt_nodeList.add(er12);
+        egypt_nodeList.add(er13);
+        egypt_nodeList.add(er21);
+        egypt_nodeList.add(er22);
+        egypt_nodeList.add(er23);
+        egypt_nodeList.add(er31);
+        egypt_nodeList.add(er32);
+        egypt_nodeList.add(er33);
+        egypt_nodeList.add(er211);
+        egypt_nodeList.add(er212);
+        egypt_nodeList.add(er213);
+        egypt_nodeList.add(er221);
+        egypt_nodeList.add(er222);
+        egypt_nodeList.add(er223);
+        egypt_nodeList.add(er231);
+        egypt_nodeList.add(er232);
+        egypt_nodeList.add(er233);
+        egypt_nodeList.add(er311);
+        egypt_nodeList.add(er312);
+        egypt_nodeList.add(er313);
+        egypt_nodeList.add(er321);
+        egypt_nodeList.add(er322);
+        egypt_nodeList.add(er323);
+        egypt_nodeList.add(er331);
+        egypt_nodeList.add(er332);
+        egypt_nodeList.add(er333);
+        egypt_nodeList.add(er411);
+        egypt_nodeList.add(er412);
+        egypt_nodeList.add(er413);
+        egypt_nodeList.add(er421);
+        egypt_nodeList.add(er422);
+        egypt_nodeList.add(er423);
+        egypt_nodeList.add(er431);
+        egypt_nodeList.add(er432);
+        egypt_nodeList.add(er433);
+    }
+    private void helpComments(){
+        help_view = findViewById(R.id.expl_view);
+        mayan_help[0] = "Each dot represents one. Each bar represents five. Each empty shell represents zero.";
+        mayan_help[1] = "Their system is base twenty. Meaning the place value is dictated by powers of twenty.";
+        mayan_help[2] = "For numbers one through nineteen they are simply represented with the corresponding bars and dots.";
+        mayan_help[3] = "Once a number exceeds twenty bars and dots are placed in higher categories representing the incrementing powers of twenty.";
+        mayan_help[4] = "For example 124, one bar will be placed in the top category worth 100 (20^1*5). Atop that bar one dot will be placed worth 20 (20^1).";
+        mayan_help[5] = "The remainder is 4, four dots will be placed in the lower category worth 1 each (20^0). ";
+
+        bab_help[0] = "One through nine are represented with stacked triangles. Tens (ten,twenty, thirty up to fifty) are represented by sideways larger triangles.";
+        bab_help[1] = "Their system is base sixty. Meaning the place value is dictated by powers of sixty.";
+        bab_help[2] = "Once a number exceeds sixty triangles are placed in categories further to the left representing the incrementing powers of sixty.";
+
+        egypt_help[0] = "The ancient egyptian numeral system is much closer to what we are used to today.";
+        egypt_help[1] = "Their system is base ten identical to our own. Ones, tens, hundreds and so on each have a corresponding symbol.";
+        egypt_help[2] = "A number is broken down into its powers of ten and constructed with the highest value symbols on the left.";
+
+        roman_help[0] = "Ancient romans used roman numerals. I, II, III were one, two and three respectively.";
+        roman_help[1] = "Larger numbers: V = 5, X = 10, L = 50, C = 100,D = 500, M = 1000.";
+        roman_help[2] = "But what about all the numbers in between? This is where placement comes into play.";
+        roman_help[3] = "Placing a numeral before another one subtracts its value. Example: placing an I before V represents four as IV.";
+        roman_help[4] = "Placing a numeral after another one adds its value. Example: placing an II after V represents seven as VII.";
+        roman_help[5] = "This method is used to construct their entire numeral system.";
     }
 }
