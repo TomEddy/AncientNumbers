@@ -5,7 +5,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-
+/*
+Mayan_Converter_v2
+Class responsible for converting numbers into Mayan numerals.
+Constructor: ArrayList<ImageView> n is the collection of textviews that make up all possible slots for a bar/number of dots.
+             ArrayList<ImageView> nn is the collection of textviews that are all the possible placements for empty bowls (zeros).
+Methods: set_Num method which converts the desired number.
+         tier supplementary method which decrements number according to category allowing the remainder to be processed after.
+*/
 public class Mayan_Converter_v2 extends AppCompatActivity {
 
     private final ArrayList<ImageView> nodeList;
@@ -30,7 +37,6 @@ public class Mayan_Converter_v2 extends AppCompatActivity {
         zero = R.drawable.cero_maya_p;
 
         image_Resources = new ArrayList<>();
-
         image_Resources.add(one);
         image_Resources.add(two);
         image_Resources.add(three);
@@ -70,13 +76,6 @@ public class Mayan_Converter_v2 extends AppCompatActivity {
         if (num >= 8000) {
             includeZeros = true;
             num = tier(num,3);
-        }else if(includeZeros){
-            //Currently always false but needed for expansion
-            zeroList.get(3).setVisibility(View.VISIBLE);
-            zeroList.get(3).setImageResource(image_Resources.get(5));
-            for(int i = 0; i < 4; i++){
-                nodeList.get(12+i).setVisibility(View.GONE);
-            }
         }
         if (num >= 400) {
             includeZeros = true;
@@ -89,7 +88,6 @@ public class Mayan_Converter_v2 extends AppCompatActivity {
             }
         }
         if (num >= 20) {
-            includeZeros = true;
             num = tier(num,1);
         }else if(includeZeros){
             zeroList.get(1).setVisibility(View.VISIBLE);
@@ -99,7 +97,7 @@ public class Mayan_Converter_v2 extends AppCompatActivity {
             }
         }
         if (num > 0) {
-            num = tier(num,0);
+            tier(num,0);
         } else {
             for(int i = 0; i < 4; i++){
               nodeList.get(i).setVisibility(View.GONE);

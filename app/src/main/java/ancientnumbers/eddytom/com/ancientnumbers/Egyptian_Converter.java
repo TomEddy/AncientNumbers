@@ -5,7 +5,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-
+/*
+Egyptian_Converter
+Class responsible for converting numbers into Egyptian numerals.
+Constructor: ArrayList<ImageView> n is the collection of textviews that make up all possible slots for an egyptian numeral to be displayed.
+Methods: setNum method which converts the desired number.
+         tier supplementary method which decrements number according to category allowing the remainder to be processed after.
+*/
 public class Egyptian_Converter extends AppCompatActivity {
 
     private final ArrayList<ImageView> nodeList;
@@ -17,7 +23,6 @@ public class Egyptian_Converter extends AppCompatActivity {
         nodeList = n;
     }
     private int tier(int num, int tier) {
-        //boolean lineBalance = false;
         int level = 1;
         int counter;
         for (int i = 0; i < tier; i++) {
@@ -26,11 +31,15 @@ public class Egyptian_Converter extends AppCompatActivity {
         counter = 9 * tier;
         for (int i = 0; i < 9; i++) {
             if (num >= level) {
-                nodeList.get(counter).setVisibility(View.VISIBLE);
+                if (nodeList != null) {
+                    nodeList.get(counter).setVisibility(View.VISIBLE);
+                }
                 counter = counter + 1;
                 num = num - level;
             } else {
-                nodeList.get(counter).setVisibility(View.INVISIBLE);
+                if (nodeList != null) {
+                    nodeList.get(counter).setVisibility(View.INVISIBLE);
+                }
                 counter = counter + 1;
             }
         }
@@ -48,12 +57,7 @@ public class Egyptian_Converter extends AppCompatActivity {
             num = tier(num,1);
         }
         if (num > 0) {
-            num = tier(num,0);
+            tier(num,0);
         }
     }
 }
-
-
-
-
-

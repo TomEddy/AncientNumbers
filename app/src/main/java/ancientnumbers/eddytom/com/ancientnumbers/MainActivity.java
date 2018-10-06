@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ImageView> bab_nodelist;
     private final String[] mayan_help = new String[6];
     private final String[] roman_help = new String[6];
-    private final String[] bab_help = new String[3];
+    private final String[] bab_help = new String[5];
     private final String[] egypt_help = new String[3];
     private EditText input;
     private TextView civ_detail;
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
             output_bab.setVisibility(View.GONE);
             current_conv = 1;
             //Fact check needed
-            civ_detail.setText("Mayan Civilization: 1800 BC - 1697 AD");
+            civ_detail.setText(R.string.mayanTimeline);
          }
         }
         if (id == R.id.action_settings_roman) {
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 output_bab.setVisibility(View.GONE);
                 current_conv = 2;
                 //Fact check needed
-                civ_detail.setText("Roman Empire: 753 BC - 1453 AD");
+                civ_detail.setText(R.string.romanTimeline);
             }
         }
 
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
                 output_bab.setVisibility(View.GONE);
                 current_conv = 3;
                 //Fact check needed
-                civ_detail.setText("Ancient Egypt: 3100 BC - 30 BC");
+                civ_detail.setText(R.string.egytTimeline);
             }
         }
 
@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                 m2space.setVisibility(View.GONE);
                 current_conv = 4;
                 //Fact check needed
-                civ_detail.setText("Ancient Babylonia: 1895 BC - 539 BC");
+                civ_detail.setText(R.string.babTimeline);
             }
         }
         return super.onOptionsItemSelected(item);
@@ -482,14 +482,16 @@ public class MainActivity extends AppCompatActivity {
         help_view = findViewById(R.id.expl_view);
         mayan_help[0] = "Each dot represents one. Each bar represents five. Each empty shell represents zero.";
         mayan_help[1] = "Their system is base twenty. Meaning the place value is dictated by powers of twenty.";
-        mayan_help[2] = "For numbers one through nineteen they are simply represented with the corresponding bars and dots.";
+        mayan_help[2] = "For numbers one through nineteen they are simply represented with the corresponding dots stacked on bars.";
         mayan_help[3] = "Once a number exceeds twenty bars and dots are placed in higher categories representing the incrementing powers of twenty.";
         mayan_help[4] = "For example 124, one bar will be placed in the top category worth 100 (20^1*5). Atop that bar one dot will be placed worth 20 (20^1).";
         mayan_help[5] = "The remainder is 4, four dots will be placed in the lower category worth 1 each (20^0). ";
 
-        bab_help[0] = "One through nine are represented with stacked triangles. Tens (ten,twenty, thirty up to fifty) are represented by sideways larger triangles.";
+        bab_help[0] = "One through nine are represented with stacked triangles. Tens (ten,twenty, up to fifty) are represented by sideways larger triangles.";
         bab_help[1] = "Their system is base sixty. Meaning the place value is dictated by powers of sixty.";
         bab_help[2] = "Once a number exceeds sixty triangles are placed in categories further to the left representing the incrementing powers of sixty.";
+        bab_help[3] = "For example 124, two triangles will be placed in the left category worth 60 (60^1).";
+        bab_help[4] = "The remainder is 4, four triangles will be placed in the right category worth 1 each (60^0). ";
 
         egypt_help[0] = "The ancient egyptian numeral system is much closer to what we are used to today.";
         egypt_help[1] = "Their system is base ten identical to our own. Ones, tens, hundreds and so on each have a corresponding symbol.";

@@ -4,7 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
-
+/*
+Bab_Converter
+Class responsible for converting numbers into Babylonian numerals.
+Constructor: ArrayList<ImageView> n is the collection of textviews that make up all possible slots for Babylonian numerals to be displayed.
+Methods: setNum method which converts the desired number.
+         tier supplementary method which decrements number according to category allowing the remainder to be processed after. Essentially follows the number systems pattern in order to be able to handle any number.
+*/
 public class Bab_Converter extends AppCompatActivity {
 
     private final ArrayList<ImageView> nodeList;
@@ -95,12 +101,7 @@ public class Bab_Converter extends AppCompatActivity {
             num = tier(num, 1);
         }
         if (num > 0) {
-            num = tier(num, 0);
+            tier(num, 0);
         }
     }
 }
-
-
-
-
-
